@@ -124,7 +124,7 @@ export const InteractiveList = (props) => {
 
                             <ListItemText>1 month left</ListItemText>
                             <ListItemIcon>
-                                <TrendingUpOutlinedIcon fontSize='small' />
+                                <TrendingUpOutlinedIcon fontSize='large' />
                             </ListItemIcon>
                         </ListItem>
                         <h2>-------------------------Option 2-------------------------------</h2>
@@ -143,7 +143,7 @@ export const InteractiveList = (props) => {
                             </ListItemButton>
                             <ListItemText>2 months left</ListItemText>
                             <ListItemIcon>
-                                <TrendingUpOutlinedIcon fontSize='large' />
+                                <TrendingFlatOutlinedIcon fontSize='medium' />
                             </ListItemIcon>
                         </ListItem>
 
@@ -240,7 +240,7 @@ export const InteractiveList = (props) => {
 
                             <ListItemText>1 month left</ListItemText>
                             <ListItemIcon>
-                                <TrendingUpOutlinedIcon fontSize='small' />
+                                <TrendingUpOutlinedIcon fontSize='large' />
                             </ListItemIcon>
                         </ListItem>
 
@@ -320,7 +320,7 @@ export const InteractiveList = (props) => {
 
                             <ListItemText>1 month left</ListItemText>
                             <ListItemIcon>
-                                <TrendingUpOutlinedIcon fontSize='small' />
+                                <TrendingUpOutlinedIcon fontSize='large' />
                             </ListItemIcon>
                         </ListItem>
                     </List>
