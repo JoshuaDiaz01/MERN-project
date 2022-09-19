@@ -18,4 +18,5 @@ router.get("/", handleGetAllItems);
 router.delete("/:id", handleDeleteItemById);
 router.put("/:id", handleUpdateItemById);
 
+//update model name below
 module.exports = { itemRouter: router }
