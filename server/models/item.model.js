@@ -13,7 +13,7 @@ const ItemSchema = new mongoose.Schema(
         },
 
         category: {
-            type: String,
+            type: Number,
             required: [true, `{PATH} is required.`],
         },
 
@@ -25,7 +25,13 @@ const ItemSchema = new mongoose.Schema(
         orderHistory: {
             type: Array,
             required: [true, `{PATH} is required`]
+        },
+
+        inflation: {
+            type: Number,
+            required: [true, `{PATH} is required`]
         }
+
     },
     { timestamps: true } 
 )
