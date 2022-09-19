@@ -23,16 +23,33 @@ import TrendingFlatOutlinedIcon from '@mui/icons-material/TrendingFlatOutlined';
 import { ListItemButton } from '@mui/material';
 import { positions } from '@mui/system';
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined';
+import StarIcon from '@mui/icons-material/Star';
 
 const dummyData = [
-    { name: "stain",
-    quantity: 42,
-    categoryCode: "06",
-    categoryName: "Chemicals and Allied Products",
-    isFavorited: false,
-    orderHistory: []
-},
-
+    {
+        name: "stain",
+        quantity: 42,
+        categoryCode: "06",
+        categoryName: "Chemicals and Allied Products",
+        isFavorited: false,
+        orderHistory: []
+    },
+    {
+        name: "concrete",
+        quantity: 25,
+        categoryCode: "06",
+        categoryName: "Building Materials",
+        isFavorited: true,
+        orderHistory: []
+    },
+    {
+        name: "4x4s",
+        quantity: 100,
+        categoryCode: "08",
+        categoryName: "Wood and wood products",
+        isFavorited: false,
+        orderHistory: []
+    },
 
 ]
 
@@ -50,7 +67,7 @@ export const InteractiveList = (props) => {
 
     return (
         // <Paper elevation={24}>
-        <Box sx={{ flexGrow: 1, maxWidth: 752}}>
+        <Box sx={{ flexGrow: 1, maxWidth: 752 }}>
 
 
             <FormGroup row>
@@ -71,7 +88,7 @@ export const InteractiveList = (props) => {
                         />
                     }
                     label="Show Details"
-                    sx= {{color: "primary"}} />
+                    sx={{ color: "primary" }} />
             </FormGroup>
 
             <Grid container spacing={8} >
@@ -80,88 +97,41 @@ export const InteractiveList = (props) => {
                     <Typography sx={{ mt: 4, mb: 2 }} variant="h6" component="div">
                     </Typography>
                     <List dense={dense} sx={{ width: 600 }} >
-                        {/* {generate( */}
 
-                        <ListItem secondaryAction={
-                            <IconButton position="left">
-                                <LibraryAddOutlinedIcon fontSize={dense ? 'small' : 'medium'} color="primary"/>
-                            </IconButton>
+                        {dummyData.map((item, i) => {
+                            return (
+                                <ListItem key={i} secondaryAction={
+                                    <IconButton position="left">
+                                        <LibraryAddOutlinedIcon fontSize={dense ? 'small' : 'medium'} color="primary" />
+                                    </IconButton>
 
-                        }>
-                            <ListItemIcon>
-                                <IconButton>
-                                    <StarOutlineOutlinedIcon fontSize={secondary ? 'large' : 'medium'} color="primary" />
+                                }>
+                                    <ListItemIcon>
+                                        <IconButton>
+                                            {item.isFavorited? <StarIcon color="primary" fontSize={secondary ? 'large' : 'medium'}/> : <StarOutlineOutlinedIcon fontSize={secondary ? 'large' : 'medium'} color="primary" /> }
+                                            
 
-                                </IconButton>
-                            </ListItemIcon>
+                                        </IconButton>
+                                    </ListItemIcon>
 
-                            <ListItemButton onClick={handleClick} edge="end">
-                                <ListItemText sx={{ width: 200 }}
-                                    primary="Stain"
-                                    secondary={secondary ? 'Chemicals and Allied Products' : null}
-                                />
-                            </ListItemButton>
-                            <ListItemText primary="1 week left" secondary={secondary? '48': null} />
-                            
-                                
-                            <ListItemIcon>
-                                <TrendingFlatOutlinedIcon fontSize='medium' color="success" />
-                            </ListItemIcon>
-                            
-                        </ListItem>
+                                    <ListItemButton onClick={handleClick} edge="end">
+                                        <ListItemText sx={{ width: 200 }}
+                                            primary= {item.name}
+                                            secondary={secondary ? item.categoryName : null}
+                                        />
+                                    </ListItemButton>
+                                    <ListItemText primary={item.quantity}/>
 
-                        <ListItem secondaryAction={
-                            <IconButton position="left">
-                                <LibraryAddOutlinedIcon fontSize={dense ? 'small' : 'medium'} color="primary" />
-                            </IconButton>
 
-                        }>
-                            <ListItemIcon>
-                                <IconButton>
-                                    <StarOutlineOutlinedIcon fontSize={secondary ? 'large' : 'medium'}  color="primary"/>
+                                    <ListItemIcon>
+                                        <TrendingFlatOutlinedIcon fontSize='medium' color="success" />
+                                    </ListItemIcon>
 
-                                </IconButton>
-                            </ListItemIcon>
+                                </ListItem>
+                            )
+                        })}
 
-                            <ListItemButton onClick={handleClick} edge="end">
-                                <ListItemText sx={{ width: 200 }}
-                                    primary="Concrete"
-                                    secondary={secondary ? 'Building Materials' : null}
-                                />
-                            </ListItemButton>
-                            <ListItemText primary="2 months left" secondary={secondary? '48': null} />
-                            <ListItemIcon>
-                                <TrendingUpOutlinedIcon fontSize='medium' color="primary"/>
-                            </ListItemIcon>
-                        </ListItem>
-
-                        <ListItem secondaryAction={
-                            <IconButton position="left">
-                                <LibraryAddOutlinedIcon fontSize={dense ? 'small' : 'medium'} color="primary" />
-                            </IconButton>
-
-                        }>
-
-                            <ListItemIcon>
-                                <IconButton>
-                                    <StarOutlineOutlinedIcon fontSize={secondary ? 'large' : 'medium'} color="primary"/>
-
-                                </IconButton>
-                            </ListItemIcon>
-
-                            <ListItemButton onClick={handleClick}>
-
-                                <ListItemText sx={{ width: 200 }}
-                                    primary="4x4s"
-                                    secondary={secondary ? 'Lumber and Wood Products' : null}
-                                />
-                            </ListItemButton>
-
-                            <ListItemText primary="2 months left" secondary={secondary? '48': null} />
-                            <ListItemIcon>
-                                <TrendingUpOutlinedIcon fontSize='large' color="warning"/>
-                            </ListItemIcon>
-                        </ListItem>
+                        
                     </List>
                 </Grid>
             </Grid>
