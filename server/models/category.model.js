@@ -1,29 +1,18 @@
 const mongoose = require("mongoose");
 
-
-const ItemSchema = new mongoose.Schema(
+const CategorySchema = new mongoose.Schema(
     {
         name: {
             type: String,
             required: [true, `{PATH} is required.`],
         },
 
-        quantity: {
+        groupCode: {
             type: Number,
             required: [true, `{PATH} is required.`],
         },
 
-        category: {
-            type: Number,
-            required: [true, `{PATH} is required.`],
-        },
-
-        isFavorited: {
-            type: Boolean,
-            required: [true, `{PATH} is required.`]
-        },
-
-        orderHistory: {
+        items: {
             type: Array,
             required: [true, `{PATH} is required`]
         },
@@ -37,6 +26,6 @@ const ItemSchema = new mongoose.Schema(
     { timestamps: true } 
 )
 
-const Item = mongoose.model("Item", ItemSchema);
+const Category = mongoose.model("Category", CategorySchema);
 
-module.exports = { Item: Item };
+module.exports = { Category: Category };
