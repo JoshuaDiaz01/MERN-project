@@ -1,5 +1,7 @@
 const mongoose = require("mongoose");
 
+const dbName = "inventori_db"
+
 mongoose
   .connect(`mongodb://localhost/${dbName}`, {
 
