@@ -26,36 +26,13 @@ import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined';
 import axios from 'axios';
 
 
-const dummyData = [
-    {
-        name: "stain",
-        quantity: 42,
-        categoryCode: "06",
-        categoryName: "Chemicals and Allied Products",
-        isFavorited: false,
-        orderHistory: []
-    },
-    {
-        name: "concrete",
-        quantity: 25,
-        categoryCode: "06",
-        categoryName: "Building Materials",
-        isFavorited: true,
-        orderHistory: []
-    },
-    {
-        name: "4x4s",
-        quantity: 100,
-        categoryCode: "08",
-        categoryName: "Wood and wood products",
-        isFavorited: false,
-        orderHistory: []
-    }
-]
-
 export const InteractiveList = (props) => {
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
+    const [inventory, setInventory] = React.useState(props.inventory)
+    const [categories, setCategories] = React.useState(props.categories)
+
+
 
     const handleClick = (e) => {
         alert("navigate to item")
@@ -65,7 +42,7 @@ export const InteractiveList = (props) => {
 
 <>
 
-        <Box sx={{ flexGrow: 1, maxWidth: 1000}}>
+        <Box sx={{ flexGrow: 1, maxWidth: "inherit", minWidth: "100%"}}>
 
 
             <FormGroup row sx={{marginLeft: 3}}>
@@ -89,15 +66,20 @@ export const InteractiveList = (props) => {
                     sx= {{color: "primary"}} />
             </FormGroup>
 
-            <Grid container spacing={8} >
+            <Grid>
 
-                <Grid item xs={12} md={8}>
+                <Grid item>
 
 
 
-                    <List dense={dense} sx={{ width: 600 }} >
+                    <List dense={dense} sx={{maxWidth: "inherit"}}>
 
-                    {dummyData.map((item, i) => {
+                    {inventory.map((item, i) => {
+
+                        const categoryName = categories.filter((category) => {
+                            return (item.category === category.groupCode)
+                        }).map(entry => entry.name)
+
             return (
                 <ListItem key={i} secondaryAction={
                     <IconButton position="left">
@@ -107,15 +89,15 @@ export const InteractiveList = (props) => {
                 }>
                     <ListItemIcon>
                         <IconButton>
-                            <StarOutlineOutlinedIcon fontSize={secondary ? 'large' : 'medium'} color="primary" />
-
+                            {item.isFavorited? "Filled in Star" : <StarOutlineOutlinedIcon fontSize={secondary ? 'large' : 'medium'} color="primary" />}
+                            
                         </IconButton>
                     </ListItemIcon>
 
                     <ListItemButton onClick={handleClick} edge="end">
                         <ListItemText sx={{ width: 200 }}
                             primary={item.name}
-                            secondary={secondary ? item.categoryName : null}
+                            secondary={secondary ? categoryName : null}
                         />
                     </ListItemButton>
                     <ListItemText primary={item.quantity }secondary={secondary? null : null} />
