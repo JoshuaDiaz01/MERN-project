@@ -45,7 +45,7 @@ export const InteractiveList = (props) => {
         alert("navigate to item")
     }
 
-    const favorite = async (item) => {
+    const toggleFavorite = async (item) => {
         const updatedItem = {...item, isFavorited: !item.isFavorited}
 
         axios.put('http://localhost:8000/api/items/' + item._id, updatedItem)
@@ -104,7 +104,7 @@ export const InteractiveList = (props) => {
                                         </IconButton>
                                     }>
                                         <ListItemIcon>
-                                            <IconButton onClick={(e) => favorite(item)}>
+                                            <IconButton onClick={(e) => toggleFavorite(item)}>
                                                 {item.isFavorited ? <StarIcon fontSize={secondary ? 'large' : 'medium'} color="primary" /> : <StarOutlineOutlinedIcon fontSize={secondary ? 'large' : 'medium'} color="primary" />}
 
                                             </IconButton>

@@ -1,29 +1,37 @@
-import StarOutlineOutlined from "@mui/icons-material/StarOutlineOutlined";
+import StarIcon from '@mui/icons-material/Star';
 import TrendingFlatOutlined from "@mui/icons-material/TrendingFlatOutlined";
 import { List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
-import { useState, useEffect } from "react";
+import axios from 'axios'
 
 
 const WatchList = (props) => {
-    const [inventory, setInventory] = useState(props.inventory)
-    const [categories, setCategories] = useState(props.categories)
+    const {inventory, updateInventoryItem} = props
+
+    const toggleFavorite = async (item) => {
+        const updatedItem = {...item, isFavorited: !item.isFavorited}
+
+        axios.put('http://localhost:8000/api/items/' + item._id, updatedItem)
+        .then((res) => updateInventoryItem(res.data))
+        .catch((error) => console.log(error))
+        
+    }
 
     return (
         <>
             <Typography variant="h3">WatchList</Typography>
+            <List>
             {
                 inventory.filter((item) => item.isFavorited).map((entry, index) => {
                     return (
-                        <List>
-                            <ListItem>
-                                <ListItemIcon><StarOutlineOutlined fontSize={'large'} color="primary"/></ListItemIcon>
+                            <ListItem key={index}>
+                                <ListItemIcon onClick={(e) => toggleFavorite(entry)}><StarIcon fontSize={'large'} color="primary"/></ListItemIcon>
                                 <ListItemText key={index} >{entry.name}</ListItemText> 
                                 <ListItemIcon><TrendingFlatOutlined fontSize='medium' color="success" /></ListItemIcon>
                             </ListItem>
-                        </List>
                     )
                 })
             }
+            </List>
         </>
     )
 }
