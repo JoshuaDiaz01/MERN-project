@@ -5,6 +5,7 @@ import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import AddNew from "../components/AddNew";
+import QuickUpdate from "../components/QuickUpdate";
 
 
 
@@ -52,6 +53,7 @@ export const Main = (props) => {
                 <Grid xs={0} md={4}>
                 {inventory.length > 0 && categories.length > 0 && <WatchList inventory={inventory} categories={categories} updateInventoryItem={updateInventoryItem}/>}
                 <AddNew categories = {categories} />
+                <QuickUpdate categories = {categories} />
                 </Grid>
 
             </Grid>
