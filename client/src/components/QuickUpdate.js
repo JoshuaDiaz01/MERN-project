@@ -2,7 +2,7 @@ import { Autocomplete, Button, Typography , TextField} from '@mui/material';
 import {useState} from 'react';
 const { createItem } = require('../services/localHostApiService')
 
-const AddNew = (props) => {
+const QuickUpdate = (props) => {
     const [name, setName] = useState('');
     const [quantity, setQuantity] = useState('');
     const [category, setCategory] = useState('');
@@ -42,4 +42,4 @@ const AddNew = (props) => {
     )
 }
 
-export default AddNew;
+export default QuickUpdate;
