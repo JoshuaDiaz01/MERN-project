@@ -40,7 +40,7 @@ const Demo = styled('div')(({ theme }) => ({
     backgroundColor: theme.palette.background.paper,
 }));
 
-export const InteractiveList = (props) => {
+export const InteractiveList_hardcoded = (props) => {
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
 
@@ -170,4 +170,4 @@ export const InteractiveList = (props) => {
     );
 }
 
-export default InteractiveList;
+export default InteractiveList_hardcoded;
