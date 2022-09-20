@@ -1,9 +1,10 @@
 import InteractiveList from "../components/InteractiveList";
-import QuickUpdate from "../components/QuickUpdate";
+import WatchList from "../components/WatchList";
 import Grid from '@mui/material/Grid'; // Grid version 1
 import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from 'axios';
+import AddNew from "../components/AddNew";
 
 
 
@@ -31,7 +32,8 @@ export const Main = (props) => {
 
                 </Grid>
                 <Grid xs={0} md={4}>
-                {inventory.length > 0 && categories.length > 0 && <QuickUpdate inventory={inventory} categories={categories}/>}
+                {inventory.length > 0 && categories.length > 0 && <WatchList inventory={inventory} categories={categories}/>}
+                <AddNew categories = {categories} />
                 </Grid>
 
             </Grid>
