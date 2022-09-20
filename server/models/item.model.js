@@ -29,7 +29,7 @@ const ItemSchema = new mongoose.Schema(
         },
 
         inflation: {
-            type: Number,
+            type: Array,
             required: [true, `{PATH} is required`]
         }
 
