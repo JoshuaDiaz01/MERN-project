@@ -1,6 +1,6 @@
 const {
     createCategory,
-    getAllCategories,
+    getAllCategorys,
     getCategoryById,
     updateCategoryById,
     deleteCategoryById
@@ -18,7 +18,7 @@ const handleCreateCategory = async (req, res) => {
 
 const handleGetAllCategories = async (req, res) => {
     try {
-        const categorys = await getAllCategories();
+        const categorys = await getAllCategorys();
         return res.json(categorys);
     } catch (error) {
         return res.status(400).json(error);
