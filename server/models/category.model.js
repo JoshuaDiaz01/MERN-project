@@ -17,8 +17,8 @@ const CategorySchema = new mongoose.Schema(
             required: [true, `{PATH} is required`]
         },
 
-        inflation: {
-            type: Number,
+        inflationIndexes: {
+            type: Array,
             required: [true, `{PATH} is required`]
         }
 

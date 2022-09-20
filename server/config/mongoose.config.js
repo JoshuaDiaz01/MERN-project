@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
-const dbOneName = "inventory_db";
-const dbTwoName = "category_db";
+const dbName = "inventori_db"
 
 var conn      = mongoose.createConnection(`mongodb://localhost/${dbOneName}`);
 var conn2     = mongoose.createConnection(`mongodb://localhost/${dbTwoName}`);

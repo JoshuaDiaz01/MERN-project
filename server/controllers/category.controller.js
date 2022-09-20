@@ -1,6 +1,6 @@
 const {
     createCategory,
-    getAllCategorys,
+    getAllCategories,
     getCategoryById,
     updateCategoryById,
     deleteCategoryById
@@ -16,9 +16,9 @@ const handleCreateCategory = async (req, res) => {
     }
 };
 
-const handleGetAllCategorys = async (req, res) => {
+const handleGetAllCategories = async (req, res) => {
     try {
-        const categorys = await getAllCategorys();
+        const categorys = await getAllCategories();
         return res.json(categorys);
     } catch (error) {
         return res.status(400).json(error);
@@ -58,7 +58,7 @@ const handleUpdateCategoryById = async (req, res) => {
 
 module.exports = {
     handleCreateCategory,
-    handleGetAllCategorys,
+    handleGetAllCategories,
     handleGetCategoryById,
     handleDeleteCategoryById,
     handleUpdateCategoryById
