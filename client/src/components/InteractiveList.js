@@ -23,8 +23,9 @@ import TrendingFlatOutlinedIcon from '@mui/icons-material/TrendingFlatOutlined';
 import { ListItemButton } from '@mui/material';
 import { positions } from '@mui/system';
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined';
+import axios from 'axios';
 
-const dummyData2 = ["hello", "this", "is", "frustrating"]
+
 const dummyData = [
     {
         name: "stain",
@@ -50,7 +51,6 @@ const dummyData = [
         isFavorited: false,
         orderHistory: []
     }
-
 ]
 
 export const InteractiveList = (props) => {
@@ -68,7 +68,7 @@ export const InteractiveList = (props) => {
         <Box sx={{ flexGrow: 1, maxWidth: 1000}}>
 
 
-            <FormGroup row>
+            <FormGroup row sx={{marginLeft: 3}}>
                 <FormControlLabel
                     control={
                         <Checkbox
@@ -76,7 +76,7 @@ export const InteractiveList = (props) => {
                             onChange={(event) => setDense(event.target.checked)}
                         />
                     }
-                    label="Dense Modes"
+                    label="Dense Mode"
                 />
                 <FormControlLabel
                     control={
@@ -99,9 +99,9 @@ export const InteractiveList = (props) => {
 
                     {dummyData.map((item, i) => {
             return (
-                <ListItem secondaryAction={
+                <ListItem key={i} secondaryAction={
                     <IconButton position="left">
-                        <LibraryAddOutlinedIcon fontSize={dense ? 'small' : 'medium'} color="primary"/>
+                        <LibraryAddOutlinedIcon fontSize={dense ? 'small' : 'medium'} color="primary" onClick={(e) => alert(item.name)}/>
                     </IconButton>
 
                 }>
