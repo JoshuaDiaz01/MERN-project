@@ -10,7 +10,7 @@ const handleCreateCategory = async (req, res) => {
 
     try {
         const category = await createCategory(req.body);
-        return res.json(item);
+        return res.json(category);
     } catch (error) {
         return res.status(400).json(error);
     }

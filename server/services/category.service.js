@@ -7,10 +7,10 @@ const createCategory = async (data) => {
     return category;
 }
 
-const getAllCategorys = async () => {
-    const allCategorys = await Category.find();
+const getAllCategories = async () => {
+    const allCategories = await Category.find();
 
-    return allCategorys
+    return allCategories
 }
 
 const getCategoryById = async (id) => {
@@ -38,7 +38,7 @@ const updateCategoryById = async (id, data) => {
 
 module.exports = {
     createCategory,
-    getAllCategorys,
+    getAllCategories,
     getCategoryById,
     deleteCategoryById,
     updateCategoryById

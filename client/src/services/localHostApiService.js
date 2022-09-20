@@ -28,3 +28,28 @@ export const deleteItem = async(id) => {
     const res = await http.delete(`/items/${id}`);
     return res.data
 }
+
+export const createCategory = async(data) => {
+    const res = await http.post('/categories', data);
+    return res.data;
+}
+
+export const getAllCategories = async() => {
+    const res = await http.get('/categories')
+    return res.data
+}
+
+export const getCategoryById = async(id) => {
+    const res = await http.get(`/categories/${id}`);
+    return res.data;
+}
+
+export const deleteCategory = async(id) => {
+    const res = await http.delete(`/categories/${id}`);
+    return res.data
+}
+
+export const updateCategory = async(id, data) => {
+const res = await http.put(`/categories/${id}`, data);
+        return res.data
+    }
