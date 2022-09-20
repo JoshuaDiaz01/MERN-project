@@ -2,7 +2,7 @@ const express = require("express");
 
 const {
     handleCreateCategory,
-    handleGetAllCategorys,
+    handleGetAllCategories,
     handleGetCategoryById,
     handleDeleteCategoryById,
     handleUpdateCategoryById
@@ -14,7 +14,7 @@ router.post("/", handleCreateCategory);
 
 
 router.get("/:id", handleGetCategoryById);
-router.get("/", handleGetAllCategorys);
+router.get("/", handleGetAllCategories);
 router.delete("/:id", handleDeleteCategoryById);
 router.put("/:id", handleUpdateCategoryById);
 
