@@ -12,10 +12,10 @@ const CategorySchema = new mongoose.Schema(
             required: [true, `{PATH} is required.`],
         },
 
-        items: {
-            type: Array,
-            required: [true, `{PATH} is required`]
-        },
+        // items: {
+        //     type: Array,
+        //     required: [true, `{PATH} is required`]
+        // },
 
         inflationIndexes: {
             type: Array,

@@ -14,6 +14,7 @@ const getAllCategorys = async () => {
 }
 
 const getCategoryById = async (id) => {
+    console.log("i am here");
     const oneCategory = await Category.findById(id);
 
     return oneCategory;

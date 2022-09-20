@@ -5,7 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import { createTheme, ThemeProvider, CssBaseline, Typography } from '@mui/material';
 
 import {InteractiveList } from './components/List_errors';
-
+import { ViewOne } from "./views/ViewOne"
 
 function App() {
   const theme = createTheme({
@@ -21,7 +21,8 @@ function App() {
 
       <div>
         <Typography variant="h2" color="primary">Inventori</Typography>
-        <Main />
+        {/* <Main /> uncomment later when pushing */}
+        <ViewOne />
 
 
 
