@@ -5,6 +5,7 @@ import { Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import AddNew from "../components/AddNew";
+import NavBar from "../components/NavBar";
 import QuickUpdate from "../components/QuickUpdate";
 import { useNavigate } from 'react-router-dom';
 
@@ -51,6 +52,8 @@ export const Main = (props) => {
     
     return (
         <>
+        <div>
+        
             <Grid container spacing={2}>
                 <Grid item xs={12} md={8}>
                     {inventory.length > 0 && categories.length > 0 && <InteractiveList inventory={inventory} categories={categories} updateInventoryItem={updateInventoryItem}
@@ -66,7 +69,9 @@ export const Main = (props) => {
                 </Grid>
 
             </Grid>
+        </div>
         </>
+        
     )
 }
 
