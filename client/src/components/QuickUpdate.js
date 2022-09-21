@@ -22,16 +22,17 @@ const QuickUpdate = (props) => {
         .catch((err) => console.log(err));
     }
 
+
     return (
         <>
         <Typography variant='h3'>Quick Update</Typography>
         <form onSubmit={handleCreateOnSubmit}>
             <div>
-                <TextField id= "outlined-basic" label="Name" variant="outlined"/>
+            <TextField id= "outlined-basic" label="Name" variant="outlined" onChange = {(event) => {setName(event.target.value)}}/>
             </div>
             <br/>
             <div>
-            <TextField id= "outlined-basic" label="quantity" variant="outlined"/>
+            <TextField id= "outlined-basic" label="quantity" variant="outlined" onChange = {(event) => {setQuantity(event.target.value)}}/>
             </div>
 
             <Button variant='outlined'>Submit</Button>
