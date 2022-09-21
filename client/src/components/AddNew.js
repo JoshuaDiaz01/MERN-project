@@ -40,11 +40,7 @@ const AddNew = (props) => {
             <TextField id= "outlined-basic" label="quantity" variant="outlined" onChange={(e) => setQuantity(e.target.value)}/>
             </div>
             <br/>
-<<<<<<< Updated upstream
-            <Autocomplete disablePortal id= 'combo-box-demo' options={{categories}} sx= {{ width: 300 }} renderInput= {(params) => <TextField {...params} label="Category" onChange= {categories}/>}/>
-=======
             <Autocomplete disablePortal id= 'combo-box-demo' options={categories} getOptionLabel= {(option) => option.groupCode} sx= {{ width: 300 }} renderInput= {(params) => <TextField {...params} label="Category" onChange={(e) => setCategory(e.target.value)}/>}/>
->>>>>>> Stashed changes
             <br/>
             <Button variant='outlined' type='submit'>Submit</Button>
         </form>
