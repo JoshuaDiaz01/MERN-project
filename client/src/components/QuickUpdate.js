@@ -1,44 +1,58 @@
-import { Autocomplete, Button, Typography , TextField} from '@mui/material';
-import {useState} from 'react';
-const { createItem } = require('../services/localHostApiService')
+import { Autocomplete, Button, Typography, TextField, InputLabel, Select, MenuItem } from '@mui/material';
+import { useState } from 'react';
+const { updateItem, getItemById } = require('../services/localHostApiService')
+
 
 const QuickUpdate = (props) => {
+    const [id, setId] = useState({});
     const [name, setName] = useState('');
     const [quantity, setQuantity] = useState('');
     const [category, setCategory] = useState('');
     const [orderHistory, setOrderHistory] = useState([]);
-    const {categories} = props
+    const { inventory, updateInventoryItem } = props
 
-    const handleCreateOnSubmit = (e) => {
+    const handleUpdateOnSubmit = (e) => {
         e.preventDefault();
+        const editedItem = getItemById(id);
         const newItem = {
-            name,
+            name: editedItem.name,
             quantity,
-            category,
-            orderHistory,
+            category: editedItem.category,
+            orderHistory: editedItem.orderHistory,
         }
-        createItem(newItem)
-        .then((item) => console.log(item))
-        .catch((err) => console.log(err));
+        updateItem(id,newItem)
+
+            .then((item) => updateInventoryItem(item))
+            .catch((err) => console.log(err));
     }
 
 
     return (
         <>
-        <Typography variant='h3'>Quick Update</Typography>
-        <form onSubmit={handleCreateOnSubmit}>
-            <div>
-            <TextField id= "outlined-basic" label="Name" variant="outlined" onChange = {(event) => {setName(event.target.value)}}/>
-            </div>
-            <br/>
-            <div>
-            <TextField id= "outlined-basic" label="quantity" variant="outlined" onChange = {(event) => {setQuantity(event.target.value)}}/>
-            </div>
+            <Typography variant='h3'>Quick Update</Typography>
+            <form onSubmit={handleUpdateOnSubmit}>
+                <div>
+                    <InputLabel size='medium'>Item</InputLabel>
+                    <Select value={id} label="Item" onChange={(e) => setId(e.target.value)}>
+                        {
+                            inventory.map((item, i) => {
+                                return ( <MenuItem value={item._id} key={i}>{item.name}</MenuItem>
+                            )})
+                        }
+                    </Select>
 
-            <Button variant='outlined'>Submit</Button>
-        </form>
+
+                    {/* <TextField id= "outlined-basic" label="Name" variant="outlined" onChange = {(event) => {setName(event.target.value)}}/> */}
+                </div>
+                <br />
+                <div>
+                    <TextField id="outlined-basic" label="quantity" variant="outlined" onChange={(event) => { setQuantity(event.target.value) }} />
+                </div>
+                <br />
+                <Button variant='outlined' type='Submit'>Submit</Button>
+            </form>
         </>
     )
 }
 
-export default QuickUpdate;
+export default QuickUpdate
