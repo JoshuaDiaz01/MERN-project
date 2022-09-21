@@ -107,7 +107,7 @@ export const InteractiveList = (props) => {
                                         }>
                                             <ListItemIcon>
                                                 <IconButton onClick={(e) => toggleFavorite(item)}>
-                                                    {item.isFavorited ? <StarIcon fontSize={secondary ? 'large' : 'medium'} color="primary" /> : <StarOutlineOutlinedIcon fontSize={secondary ? 'large' : 'medium'} color="primary" />}
+                                                    {item.isFavorited ? <StarIcon fontSize={secondary ? 'medium' : 'medium'} color="primary" /> : <StarOutlineOutlinedIcon fontSize={secondary ? 'medium' : 'medium'} color="primary" />}
 
                                                 </IconButton>
                                             </ListItemIcon>
