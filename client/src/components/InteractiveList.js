@@ -39,9 +39,6 @@ export const InteractiveList = (props) => {
 
     const { categories, inventory, updateInventoryItem } = props;
 
-    // const navigate = useNavigate();
-
-
     const handleClick = (e) => {
         alert("navigate to item")
         // navigate('/');
@@ -92,10 +89,22 @@ export const InteractiveList = (props) => {
                             <List dense={dense} sx={{ maxWidth: "inherit" }}>
 
                                 {inventory.map((item, i) => {
-
                                     const categoryName = categories.filter((category) => {
                                         return (item.category === category.groupCode)
                                     }).map(entry => entry.name)
+
+
+                                    
+                                    
+                                    const inflationString = categories.filter((category) => {
+                                        return (item.category === category.groupCode)
+                                    }).map(entry => entry.inflationIndexes + ",")
+
+                                    
+
+                                    const inflationArray = inflationString.toString().split(",")
+                                    
+                                    // console.log("inflationArray is "+ inflationArray);
 
                                     return (
 
@@ -124,11 +133,11 @@ export const InteractiveList = (props) => {
                                                 item.orderHistory? "Last order not available": "Last Order: " + item.orderHistory
                                                 : null} />
 
-
-                                            <ListItemText primary={(((item.inflationHistory[0]-item.inflationHistory[1])/item.inflationHistory[1])*100).toFixed(2) + " %"} 
+{/* IF YOU DON'T HAVE INFLATION DATA FOR EVER CATEGORY, IT WILL CRASH. ONLY UNCOMMENT IF YOU DO.
+                                            <ListItemText primary={(((inflationArray[0]-inflationArray[1])/inflationArray[1])*100).toFixed(2) + " %"} 
                                             secondary={secondary ? 
                                                 "Annual  " + (((item.inflationHistory[0]-item.inflationHistory[11])/item.inflationHistory[11])*100).toFixed(1) + " %"
-                                            : null} />
+                                            : null} /> */}
 
                                         </ListItem>
 
