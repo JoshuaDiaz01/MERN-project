@@ -3,10 +3,10 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
+
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import Avatar from '@mui/material/Avatar';
+
 import IconButton from '@mui/material/IconButton';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -59,86 +59,90 @@ export const InteractiveList = (props) => {
     return (
 
         <>
-            <MUILink href="/">Home</MUILink>
-            <Box sx={{ flexGrow: 1, maxWidth: "inherit", minWidth: "100%" }}>
+            <Paper>
+                <Box sx={{ flexGrow: 1, maxWidth: "inherit", minWidth: "100%" }}>
 
 
-                <FormGroup row sx={{ marginLeft: 3 }}>
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                checked={dense}
-                                onChange={(event) => setDense(event.target.checked)}
-                            />
-                        }
-                        label="Dense Mode"
-                    />
-                    <FormControlLabel
-                        control={
-                            <Checkbox
-                                checked={secondary}
-                                onChange={(event) => setSecondary(event.target.checked)}
-                            />
-                        }
-                        label="Show Details"
-                        sx={{ color: "primary" }} />
-                </FormGroup>
+                    <FormGroup row sx={{ marginLeft: 3 }}>
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={dense}
+                                    onChange={(event) => setDense(event.target.checked)}
+                                />
+                            }
+                            label="Dense Mode"
+                        />
+                        <FormControlLabel
+                            control={
+                                <Checkbox
+                                    checked={secondary}
+                                    onChange={(event) => setSecondary(event.target.checked)}
+                                />
+                            }
+                            label="Show Details"
+                            sx={{ color: "primary" }} />
+                    </FormGroup>
 
-                <Grid>
+                    <Grid>
 
-                    <Grid item>
+                        <Grid item>
 
 
 
-                        <List dense={dense} sx={{ maxWidth: "inherit" }}>
+                            <List dense={dense} sx={{ maxWidth: "inherit" }}>
 
-                            {inventory.map((item, i) => {
+                                {inventory.map((item, i) => {
 
-                                const categoryName = categories.filter((category) => {
-                                    return (item.category === category.groupCode)
-                                }).map(entry => entry.name)
+                                    const categoryName = categories.filter((category) => {
+                                        return (item.category === category.groupCode)
+                                    }).map(entry => entry.name)
 
-                                return (
+                                    return (
 
-                                    <ListItem key={i} secondaryAction={
-                                        <IconButton position="left" onClick={(e) => alert(item.name)}>
-                                            <LibraryAddOutlinedIcon fontSize={dense ? 'small' : 'medium'} color="primary" />
-                                        </IconButton>
-                                    }>
-                                        <ListItemIcon>
-                                            <IconButton onClick={(e) => toggleFavorite(item)}>
-                                                {item.isFavorited ? <StarIcon fontSize={secondary ? 'large' : 'medium'} color="primary" /> : <StarOutlineOutlinedIcon fontSize={secondary ? 'large' : 'medium'} color="primary" />}
-
+                                        <ListItem key={i} secondaryAction={
+                                            <IconButton position="left" onClick={(e) => alert(item.name)}>
+                                                <LibraryAddOutlinedIcon fontSize={dense ? 'small' : 'medium'} color="primary" />
                                             </IconButton>
-                                        </ListItemIcon>
+                                        }>
+                                            <ListItemIcon>
+                                                <IconButton onClick={(e) => toggleFavorite(item)}>
+                                                    {item.isFavorited ? <StarIcon fontSize={secondary ? 'medium' : 'medium'} color="primary" /> : <StarOutlineOutlinedIcon fontSize={secondary ? 'medium' : 'medium'} color="primary" />}
+
+                                                </IconButton>
+                                            </ListItemIcon>
 
                                             <ListItemButton edge="end">
-                                        <MUILink href={`/items/${item._id}`}>
-                                                <ListItemText sx={{ width: 200 }}
-                                                    primary={item.name}
-                                                    secondary={secondary ? categoryName : null}
-                                                />
+                                                <MUILink href={`/items/${item._id}`}>
+                                                    <ListItemText sx={{ width: 200 }}
+                                                        primary={item.name}
+                                                        secondary={secondary ? categoryName : null}
+                                                    />
 
-                                        </MUILink>
+                                                </MUILink>
                                             </ListItemButton>
-                                        <ListItemText primary={item.quantity} secondary={secondary ? null : null} />
+                                            <ListItemText primary={item.quantity} secondary={secondary ? 
+                                                item.orderHistory? "Last order not available": "Last Order: " + item.orderHistory
+                                                : null} />
 
 
-                                        <ListItemIcon>
-                                            <TrendingFlatOutlinedIcon fontSize='medium' color="success" />
-                                        </ListItemIcon>
+                                            <ListItemText primary={(((item.inflationHistory[0]-item.inflationHistory[1])/item.inflationHistory[1])*100).toFixed(2) + " %"} 
+                                            secondary={secondary ? 
+                                                "Annual  " + (((item.inflationHistory[0]-item.inflationHistory[11])/item.inflationHistory[11])*100).toFixed(1) + " %"
+                                            : null} />
 
-                                    </ListItem>
+                                        </ListItem>
 
-                                )
+                                    )
 
-                            })}
+                                })}
 
 
-                        </List>
+                            </List>
+                        </Grid>
                     </Grid>
-                </Grid>
-            </Box>
+                </Box>
+            </Paper>
         </>
     );
 }
