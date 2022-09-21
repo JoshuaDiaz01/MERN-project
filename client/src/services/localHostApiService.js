@@ -16,7 +16,8 @@ export const getItemById = async(id) => {
 }
 
 export const createItem = async(data) => {
-    const res = await http.get('/items', data);
+    const res = await http.post('/items', data);
+    console.log(res.data)
     return res.data;
 }
 

@@ -1,20 +1,31 @@
 
 import './App.css';
 import { Main } from '../src/views/Main'
-import { Navigate, Routes, Route, Link } from 'react-router-dom';
-import { createTheme, ThemeProvider, CssBaseline, Typography } from '@mui/material';
 
-import {InteractiveList } from './components/List_errors';
-import { ViewOne } from "./views/ViewOne"
-import { useEffect, useState } from 'react';
-import { getItemById } from './services/localHostApiService';
+import { createTheme, ThemeProvider, CssBaseline, Typography} from '@mui/material';
+import {
+  Link as RouterLink,
+  Router,
+  Route,
+  Routes,
+  MemoryRouter,
+  useLocation,
+} from 'react-router-dom';
+
+import { purple } from '@mui/material/colors'
+
+const color = purple[900];
+
+
 
 function App() {
-  const [itemData, setItemData] = useState([])
+
+
   const theme = createTheme({
     palette: {
       primary: {
-        main: "#292F4F"
+        // main: "#292F4F",
+        main: "#00ff00"
       }
     }
   })
@@ -31,7 +42,9 @@ function App() {
 
 
   return (
+
     <ThemeProvider theme={theme}>
+
       <CssBaseline />
 
       <div>
@@ -45,10 +58,12 @@ function App() {
         <Link to={`/items/632b519ac1556475c984ca2b`}>Gibson</Link>
         {/* <ViewOne itemData={itemData}/> */}
 
+        </Routes>
 
 
       </div>
     </ThemeProvider>
+
   );
 }
 

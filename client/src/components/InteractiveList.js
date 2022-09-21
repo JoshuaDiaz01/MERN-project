@@ -23,119 +23,122 @@ import TrendingFlatOutlinedIcon from '@mui/icons-material/TrendingFlatOutlined';
 import { ListItemButton } from '@mui/material';
 import { positions } from '@mui/system';
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined';
+import StarIcon from '@mui/icons-material/Star';
 import axios from 'axios';
+import { getItemById } from '../services/inventoryService';
+import { Link, useNavigate } from 'react-router-dom';
+import { Link as MUILink } from '@mui/material';
 
 
-const dummyData = [
-    {
-        name: "stain",
-        quantity: 42,
-        categoryCode: "06",
-        categoryName: "Chemicals and Allied Products",
-        isFavorited: false,
-        orderHistory: []
-    },
-    {
-        name: "concrete",
-        quantity: 25,
-        categoryCode: "06",
-        categoryName: "Building Materials",
-        isFavorited: true,
-        orderHistory: []
-    },
-    {
-        name: "4x4s",
-        quantity: 100,
-        categoryCode: "08",
-        categoryName: "Wood and wood products",
-        isFavorited: false,
-        orderHistory: []
-    }
-]
 
 export const InteractiveList = (props) => {
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
 
+
+
+    const { categories, inventory, updateInventoryItem } = props;
+
+    // const navigate = useNavigate();
+
+
     const handleClick = (e) => {
         alert("navigate to item")
+        // navigate('/');
+    }
+
+    const toggleFavorite = async (item) => {
+        const updatedItem = { ...item, isFavorited: !item.isFavorited }
+
+        axios.put('http://localhost:8000/api/items/' + item._id, updatedItem)
+            .then((res) => updateInventoryItem(res.data))
+            .catch((error) => console.log(error))
+
     }
 
     return (
 
-<>
-
-        <Box sx={{ flexGrow: 1, maxWidth: 1000}}>
-
-
-            <FormGroup row sx={{marginLeft: 3}}>
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            checked={dense}
-                            onChange={(event) => setDense(event.target.checked)}
-                        />
-                    }
-                    label="Dense Mode"
-                />
-                <FormControlLabel
-                    control={
-                        <Checkbox
-                            checked={secondary}
-                            onChange={(event) => setSecondary(event.target.checked)}
-                        />
-                    }
-                    label="Show Details"
-                    sx= {{color: "primary"}} />
-            </FormGroup>
-
-            <Grid container spacing={8} >
-
-                <Grid item xs={12} md={8}>
+        <>
+            <MUILink href="/">Home</MUILink>
+            <Box sx={{ flexGrow: 1, maxWidth: "inherit", minWidth: "100%" }}>
 
 
+                <FormGroup row sx={{ marginLeft: 3 }}>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={dense}
+                                onChange={(event) => setDense(event.target.checked)}
+                            />
+                        }
+                        label="Dense Mode"
+                    />
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                checked={secondary}
+                                onChange={(event) => setSecondary(event.target.checked)}
+                            />
+                        }
+                        label="Show Details"
+                        sx={{ color: "primary" }} />
+                </FormGroup>
 
-                    <List dense={dense} sx={{ width: 600 }} >
+                <Grid>
 
-                    {dummyData.map((item, i) => {
-            return (
-                <ListItem key={i} secondaryAction={
-                    <IconButton position="left">
-                        <LibraryAddOutlinedIcon fontSize={dense ? 'small' : 'medium'} color="primary" onClick={(e) => alert(item.name)}/>
-                    </IconButton>
-
-                }>
-                    <ListItemIcon>
-                        <IconButton>
-                            <StarOutlineOutlinedIcon fontSize={secondary ? 'large' : 'medium'} color="primary" />
-
-                        </IconButton>
-                    </ListItemIcon>
-
-                    <ListItemButton onClick={handleClick} edge="end">
-                        <ListItemText sx={{ width: 200 }}
-                            primary={item.name}
-                            secondary={secondary ? item.categoryName : null}
-                        />
-                    </ListItemButton>
-                    <ListItemText primary={item.quantity }secondary={secondary? null : null} />
-                    
-                        
-                    <ListItemIcon>
-                        <TrendingFlatOutlinedIcon fontSize='medium' color="success" />
-                    </ListItemIcon>
-                    
-                </ListItem>
-                
-            )
-            
-        })}
+                    <Grid item>
 
 
-                    </List>
+
+                        <List dense={dense} sx={{ maxWidth: "inherit" }}>
+
+                            {inventory.map((item, i) => {
+
+                                const categoryName = categories.filter((category) => {
+                                    return (item.category === category.groupCode)
+                                }).map(entry => entry.name)
+
+                                return (
+
+                                    <ListItem key={i} secondaryAction={
+                                        <IconButton position="left" onClick={(e) => alert(item.name)}>
+                                            <LibraryAddOutlinedIcon fontSize={dense ? 'small' : 'medium'} color="primary" />
+                                        </IconButton>
+                                    }>
+                                        <ListItemIcon>
+                                            <IconButton onClick={(e) => toggleFavorite(item)}>
+                                                {item.isFavorited ? <StarIcon fontSize={secondary ? 'large' : 'medium'} color="primary" /> : <StarOutlineOutlinedIcon fontSize={secondary ? 'large' : 'medium'} color="primary" />}
+
+                                            </IconButton>
+                                        </ListItemIcon>
+
+                                            <ListItemButton edge="end">
+                                        <MUILink href={`/items/${item._id}`}>
+                                                <ListItemText sx={{ width: 200 }}
+                                                    primary={item.name}
+                                                    secondary={secondary ? categoryName : null}
+                                                />
+
+                                        </MUILink>
+                                            </ListItemButton>
+                                        <ListItemText primary={item.quantity} secondary={secondary ? null : null} />
+
+
+                                        <ListItemIcon>
+                                            <TrendingFlatOutlinedIcon fontSize='medium' color="success" />
+                                        </ListItemIcon>
+
+                                    </ListItem>
+
+                                )
+
+                            })}
+
+
+                        </List>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </Box>
+            </Box>
         </>
     );
 }
