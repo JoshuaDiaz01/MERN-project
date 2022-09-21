@@ -22,12 +22,14 @@ export const Main = (props) => {
         axios.get('http://localhost:8000/api/items')
         .then(res => {setInventory(res.data)})
         setIsUpdated(false)
-    }, [inventory, isUpdated])
+    }, [])
 
     useEffect(()=> {
         axios.get('http://localhost:8000/api/categories')
         .then(res => {setCategories(res.data)})
-    }, [categories])
+    }, [])
+
+    // update the dom while setting the state
 
     // const updateFavorite = id => {
     //     const originalItem = 

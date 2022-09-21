@@ -8,16 +8,20 @@ const AddNew = (props) => {
     const [category, setCategory] = useState('');
     const [orderHistory, setOrderHistory] = useState([]);
     const [inflationHistory, setInflationHostory] = useState([]);
+    const [isFavorited, setIsFavorited] = useState(false);
     const {categories} = props
 
     const handleCreateOnSubmit = (e) => {
+        console.log(quantity)
+        console.log(name)
         e.preventDefault();
         const newItem = {
             name,
             quantity,
             category,
             orderHistory,
-            inflationHistory
+            inflationHistory,
+            isFavorited
         }
         createItem(newItem)
         .then((item) => console.log(item))
@@ -29,16 +33,20 @@ const AddNew = (props) => {
         <Typography variant='h3'>Add new</Typography>
         <form onSubmit={handleCreateOnSubmit}>
             <div>
-                <TextField id= "outlined-basic" label="Name" variant="outlined"/>
+                <TextField id= "outlined-basic"  label="Name" variant="outlined" onChange={(e) => setName(e.target.value)}/>
             </div>
             <br/>
             <div>
-            <TextField id= "outlined-basic" label="quantity" variant="outlined"/>
+            <TextField id= "outlined-basic" label="quantity" variant="outlined" onChange={(e) => setQuantity(e.target.value)}/>
             </div>
             <br/>
+<<<<<<< Updated upstream
             <Autocomplete disablePortal id= 'combo-box-demo' options={{categories}} sx= {{ width: 300 }} renderInput= {(params) => <TextField {...params} label="Category" onChange= {categories}/>}/>
+=======
+            <Autocomplete disablePortal id= 'combo-box-demo' options={categories} getOptionLabel= {(option) => option.groupCode} sx= {{ width: 300 }} renderInput= {(params) => <TextField {...params} label="Category" onChange={(e) => setCategory(e.target.value)}/>}/>
+>>>>>>> Stashed changes
             <br/>
-            <Button variant='outlined'>Submit</Button>
+            <Button variant='outlined' type='submit'>Submit</Button>
         </form>
         </>
     )
