@@ -1,6 +1,6 @@
 const {
     createCategory,
-    getAllCategorys,
+    getAllCategories,
     getCategoryById,
     getCategoryByGroupCode,
     updateCategoryById,
@@ -19,7 +19,8 @@ const handleCreateCategory = async (req, res) => {
 
 const handleGetAllCategories = async (req, res) => {
     try {
-        const categorys = await getAllCategorys();
+        console.log("controller get all categories");
+        const categorys = await getAllCategories();
         return res.json(categorys);
     } catch (error) {
         return res.status(400).json(error);

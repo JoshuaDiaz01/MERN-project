@@ -8,6 +8,7 @@ const createCategory = async (data) => {
 }
 
 const getAllCategories = async () => {
+    console.log("get all categories");
     const allCategories = await Category.find();
 
     return allCategories
