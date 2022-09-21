@@ -18,7 +18,9 @@ const WatchList = (props) => {
 
     return (
         <>
-            <Typography variant="h3">WatchList</Typography>
+            <Typography variant="h4">Watch List</Typography>
+            <Typography variant="h6">In Inventory</Typography>
+
             <List>
             {
                 inventory.filter((item) => item.isFavorited).map((entry, index) => {
@@ -32,6 +34,7 @@ const WatchList = (props) => {
                 })
             }
             </List>
+            <Typography variant="h6">Not In Inventory</Typography>
         </>
     )
 }
