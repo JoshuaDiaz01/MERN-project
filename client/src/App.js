@@ -50,7 +50,6 @@ function App() {
 
       <div>
         <NavBar></NavBar>
-        <Typography variant="h2" color="primary">Inventori</Typography>
         <Routes>
           <Route path="/" element={<Main/>} />
           <Route path="items/:id" element={ <ViewOne/> }/>
