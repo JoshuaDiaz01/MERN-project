@@ -2,6 +2,7 @@
 import './App.css';
 import { Main } from '../src/views/Main'
 import {ViewOne} from './views/ViewOne'
+import NavBar from "./components/NavBar";
 
 import { createTheme, ThemeProvider, CssBaseline, Typography} from '@mui/material';
 import {
@@ -48,6 +49,7 @@ function App() {
       <CssBaseline />
 
       <div>
+        <NavBar></NavBar>
         <Typography variant="h2" color="primary">Inventori</Typography>
         <Routes>
           <Route path="/" element={<Main/>} />
