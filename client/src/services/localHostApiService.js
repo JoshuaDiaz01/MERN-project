@@ -36,10 +36,10 @@ export const createCategory = async(data) => {
     return res.data;
 }
 
-export const getAllCategories = async() => {
-    const res = await http.get('/categories')
-    return res.data
-}
+// export const getAllCategories = async() => {
+//     const res = await http.get('/categories')
+//     return res.data
+// }
 
 export const getCategoryById = async(id) => {
     const res = await http.get(`/categories/${id}`);

@@ -28,10 +28,10 @@ const ItemSchema = new mongoose.Schema(
             required: [true, `{PATH} is required`]
         },
 
-        // inflationHistory: {
-        //     type: Array,
-        //     required: [true, `{PATH} is required`]
-        // }
+        inflationHistory: {
+            type: Array,
+            required: [true, `{PATH} is required`]
+        }
 
     },
     { timestamps: true } 

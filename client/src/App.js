@@ -49,13 +49,12 @@ function App() {
 
       <div>
         <Typography variant="h2" color="primary">Inventori</Typography>
-        {/* <Main /> uncomment later when pushing */}
         <Routes>
-          <Route path="/" element={<Navigate to="/items" replace />} />
+          <Route path="/" element={<Main/>} />
           <Route path="items/:id" element={ <ViewOne/> }/>
         </Routes>
-        <Link to={`/items/632a38d1ba5831a78f9c5e0e`}>Apples</Link>
-        <Link to={`/items/632b519ac1556475c984ca2b`}>Gibson</Link>
+        {/* <Link to={`/items/632a38d1ba5831a78f9c5e0e`}>Apples</Link>
+        <Link to={`/items/632b519ac1556475c984ca2b`}>Gibson</Link> */}
         {/* <ViewOne itemData={itemData}/> */}
 
         

@@ -14,8 +14,8 @@ const router = express.Router();
 router.post("/", handleCreateCategory);
 
 
-router.get("/:groupCode", handleGetCategoryByGroupCode);
 router.get("/", handleGetAllCategories);
+router.get("/:groupCode", handleGetCategoryByGroupCode);
 router.delete("/:id", handleDeleteCategoryById);
 router.put("/:id", handleUpdateCategoryById);
 
