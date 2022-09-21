@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from 'axios';
 import AddNew from "../components/AddNew";
 import QuickUpdate from "../components/QuickUpdate";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -14,6 +15,8 @@ export const Main = (props) => {
     const [inventory, setInventory] = useState([])
     const [categories, setCategories] = useState([])
     const [isUpdated, setIsUpdated] = useState(false)
+
+    // const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/items')
@@ -38,6 +41,10 @@ export const Main = (props) => {
             }
         })
         setInventory(updatedInventory);
+    }
+
+    const viewOne = (id) => {
+
     }
     
     return (
