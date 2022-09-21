@@ -65,7 +65,7 @@ export const Main = (props) => {
                 <Grid item xs={0} md={4}>
                 {inventory.length > 0 && categories.length > 0 && <WatchList inventory={inventory} categories={categories} updateInventoryItem={updateInventoryItem}/>}
                 <AddNew categories = {categories} />
-                <QuickUpdate categories = {categories} />
+                <QuickUpdate inventory = {inventory} updateInventoryItem= {updateInventoryItem}/>
                 </Grid>
 
             </Grid>
