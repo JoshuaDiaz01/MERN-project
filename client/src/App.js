@@ -1,15 +1,15 @@
 
 import './App.css';
 import { Main } from '../src/views/Main'
+import {ViewOne} from './views/ViewOne'
 
 import { createTheme, ThemeProvider, CssBaseline, Typography} from '@mui/material';
 import {
-  Link as RouterLink,
-  Router,
+  Link,
   Route,
   Routes,
-  MemoryRouter,
-  useLocation,
+  Navigate
+
 } from 'react-router-dom';
 
 import { purple } from '@mui/material/colors'
@@ -52,14 +52,13 @@ function App() {
         {/* <Main /> uncomment later when pushing */}
         <Routes>
           <Route path="/" element={<Navigate to="/items" replace />} />
-          <Route path="items/:id" element={ <ViewOne itemData={itemData}/> }/>
+          <Route path="items/:id" element={ <ViewOne/> }/>
         </Routes>
         <Link to={`/items/632a38d1ba5831a78f9c5e0e`}>Apples</Link>
         <Link to={`/items/632b519ac1556475c984ca2b`}>Gibson</Link>
         {/* <ViewOne itemData={itemData}/> */}
 
-        </Routes>
-
+        
 
       </div>
     </ThemeProvider>
