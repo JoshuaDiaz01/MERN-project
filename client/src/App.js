@@ -6,8 +6,11 @@ import { createTheme, ThemeProvider, CssBaseline, Typography } from '@mui/materi
 
 import {InteractiveList } from './components/List_errors';
 import { ViewOne } from "./views/ViewOne"
+import { useEffect, useState } from 'react';
+import { getItemById } from './services/localHostApiService';
 
 function App() {
+  const [itemData, setItemData] = useState([])
   const theme = createTheme({
     palette: {
       primary: {
@@ -15,6 +18,18 @@ function App() {
       }
     }
   })
+
+  useEffect(() => {
+    getItemById("632a38d1ba5831a78f9c5e0e")
+      .then((data) => {
+        setItemData(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+  }, [])
+
+
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
@@ -22,7 +37,7 @@ function App() {
       <div>
         <Typography variant="h2" color="primary">Inventori</Typography>
         {/* <Main /> uncomment later when pushing */}
-        <ViewOne />
+        <ViewOne itemData={itemData}/>
 
 
 

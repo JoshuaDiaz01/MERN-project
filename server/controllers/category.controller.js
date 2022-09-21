@@ -2,6 +2,7 @@ const {
     createCategory,
     getAllCategorys,
     getCategoryById,
+    getCategoryByGroupCode,
     updateCategoryById,
     deleteCategoryById
 } = require("../services/category.service");
@@ -28,9 +29,19 @@ const handleGetAllCategories = async (req, res) => {
 const handleGetCategoryById = async (req, res) => {
     try {
         const category = await getCategoryById(req.params.id);
+        console.log(category);
         return res.json(category);
     } catch (error) {
         return res.status(400).json(error);
+    }
+}
+
+const handleGetCategoryByGroupCode = async (req, res) => {
+    try {
+        const category = await getCategoryByGroupCode(req.params.groupCode)
+        return res.json(category);
+    } catch (error) {
+        return res.status(400).json(error)
     }
 }
 
@@ -60,6 +71,7 @@ module.exports = {
     handleCreateCategory,
     handleGetAllCategories,
     handleGetCategoryById,
+    handleGetCategoryByGroupCode,
     handleDeleteCategoryById,
     handleUpdateCategoryById
 }

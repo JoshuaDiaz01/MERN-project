@@ -11,9 +11,10 @@ const http = axios.create({
 //     return res.data;
 // }
 
-export const getCategoryByCode  = async (id) => {
-    console.log("i am here");
-    const res = await http.get("categories", id);
-    console.log(res.data);
+export const getCategoryByGroupCode  = async (groupCode) => {
+    console.log("groupCode", groupCode);
+    // const res = await http.get("categories", groupCode);
+    const res = await axios.get(`http://localhost:8000/api/categories/${groupCode}`)
+    console.log("res,data", res.data);
     return res.data;
 }

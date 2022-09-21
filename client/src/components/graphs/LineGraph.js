@@ -23,8 +23,9 @@ export const LineGraph = (props) => {
   useEffect(() => {
     setLineGraphName(props.data.name)
     setLineGraphData(props.data.inflationIndexes)
-  })
+  }, [])
 
+  
   const options = {
     scales: {
       x: {
