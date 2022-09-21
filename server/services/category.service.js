@@ -13,7 +13,17 @@ const getAllCategories = async () => {
     return allCategories
 }
 
+const getCategoryByGroupCode = async (groupCode) => {
+    console.log("service: getCategoryByGroupCode");
+    const category = await Category.find().where("groupCode").equals(groupCode);
+    // const category = await Category.find({groupCode: groupCode})
+    console.log(groupCode);
+    console.log(category);
+    return category;
+}
+
 const getCategoryById = async (id) => {
+    console.log("service: getCategoryById");
     const oneCategory = await Category.findById(id);
 
     return oneCategory;
@@ -41,5 +51,6 @@ module.exports = {
     getAllCategories,
     getCategoryById,
     deleteCategoryById,
+    getCategoryByGroupCode,
     updateCategoryById
 };
