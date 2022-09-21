@@ -62,7 +62,6 @@ export const InteractiveList = (props) => {
             <Paper>
                 <Box sx={{ flexGrow: 1, maxWidth: "inherit", minWidth: "100%" }}>
 
-
                     <FormGroup row sx={{ marginLeft: 3 }}>
                         <FormControlLabel
                             control={
