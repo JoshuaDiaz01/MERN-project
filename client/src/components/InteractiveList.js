@@ -26,7 +26,8 @@ import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined';
 import StarIcon from '@mui/icons-material/Star';
 import axios from 'axios';
 import { getItemById } from '../services/inventoryService';
-
+import { Link, useNavigate } from 'react-router-dom';
+import { Link as MUILink } from '@mui/material';
 
 
 
@@ -38,26 +39,27 @@ export const InteractiveList = (props) => {
 
     const { categories, inventory, updateInventoryItem } = props;
 
-
+    // const navigate = useNavigate();
 
 
     const handleClick = (e) => {
         alert("navigate to item")
+        // navigate('/');
     }
 
     const toggleFavorite = async (item) => {
-        const updatedItem = {...item, isFavorited: !item.isFavorited}
+        const updatedItem = { ...item, isFavorited: !item.isFavorited }
 
         axios.put('http://localhost:8000/api/items/' + item._id, updatedItem)
-        .then((res) => updateInventoryItem(res.data))
-        .catch((error) => console.log(error))
-        
+            .then((res) => updateInventoryItem(res.data))
+            .catch((error) => console.log(error))
+
     }
 
     return (
 
         <>
-
+            <MUILink href="/">Home</MUILink>
             <Box sx={{ flexGrow: 1, maxWidth: "inherit", minWidth: "100%" }}>
 
 
@@ -110,12 +112,15 @@ export const InteractiveList = (props) => {
                                             </IconButton>
                                         </ListItemIcon>
 
-                                        <ListItemButton onClick={handleClick} edge="end">
-                                            <ListItemText sx={{ width: 200 }}
-                                                primary={item.name}
-                                                secondary={secondary ? categoryName : null}
-                                            />
-                                        </ListItemButton>
+                                            <ListItemButton edge="end">
+                                        <MUILink href={`/items/${item._id}`}>
+                                                <ListItemText sx={{ width: 200 }}
+                                                    primary={item.name}
+                                                    secondary={secondary ? categoryName : null}
+                                                />
+
+                                        </MUILink>
+                                            </ListItemButton>
                                         <ListItemText primary={item.quantity} secondary={secondary ? null : null} />
 
 
