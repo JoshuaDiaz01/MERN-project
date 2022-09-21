@@ -39,6 +39,7 @@ const handleGetCategoryById = async (req, res) => {
 const handleGetCategoryByGroupCode = async (req, res) => {
     try {
         const category = await getCategoryByGroupCode(req.params.groupCode)
+        console.log(category);
         return res.json(category);
     } catch (error) {
         return res.status(400).json(error)

@@ -1,7 +1,7 @@
 
 import './App.css';
 import { Main } from '../src/views/Main'
-import { Routes, Route } from 'react-router-dom';
+import { Navigate, Routes, Route, Link } from 'react-router-dom';
 import { createTheme, ThemeProvider, CssBaseline, Typography } from '@mui/material';
 
 import {InteractiveList } from './components/List_errors';
@@ -19,15 +19,15 @@ function App() {
     }
   })
 
-  useEffect(() => {
-    getItemById("632a38d1ba5831a78f9c5e0e")
-      .then((data) => {
-        setItemData(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-  }, [])
+  // useEffect(() => {
+  //   getItemById("632a38d1ba5831a78f9c5e0e")
+  //     .then((data) => {
+  //       setItemData(data);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     })
+  // }, [])
 
 
   return (
@@ -37,7 +37,13 @@ function App() {
       <div>
         <Typography variant="h2" color="primary">Inventori</Typography>
         {/* <Main /> uncomment later when pushing */}
-        <ViewOne itemData={itemData}/>
+        <Routes>
+          <Route path="/" element={<Navigate to="/items" replace />} />
+          <Route path="items/:id" element={ <ViewOne itemData={itemData}/> }/>
+        </Routes>
+        <Link to={`/items/632a38d1ba5831a78f9c5e0e`}>Apples</Link>
+        <Link to={`/items/632b519ac1556475c984ca2b`}>Gibson</Link>
+        {/* <ViewOne itemData={itemData}/> */}
 
 
 

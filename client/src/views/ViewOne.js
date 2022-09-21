@@ -1,39 +1,56 @@
 import "../ViewOneCss.css"
 
 import { React, useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import { BarChart } from "../components/graphs/BarChart";
 import { LineGraph } from "../components/graphs/LineGraph"
+import { DoughnutChart } from "../components/graphs/DoughnutChart"
+
 import { getCategoryByGroupCode } from "../services/categoryService"
 import { getItemById } from "../services/localHostApiService"
 
 import Grid from '@mui/material/Grid'; // Grid version 1
 
 export const ViewOne = (props) => {
-    const [barChartData, setBarChartData] = useState([]);
+    const { id } = useParams();
+
     const [lineGraphData, setLineGraphData] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [itemCategory, setItemCategory] = useState("");
+    const [itemData, setItemData] = useState([])
+
+
 
     useEffect(() => {
-        const { itemData } = props.itemData
-        setItemCategory(props.itemData.category)
-        setBarChartData(props.itemData);
-
-
+        // setItemCategory(props.itemData.category)
+        
+        getItemById(id)
+        .then((data) => {
+          setItemData(data);
+        //   setBarChartData(data);
+          setItemCategory(data.category)
+          console.log("1");
+          setIsLoading(false)
+        })
+        .catch((error) => {
+          console.log(error);
+        })
+    }, [id])
+    
+    useEffect(() => {
         getCategoryByGroupCode(itemCategory) // "5" should be the category from the item
             .then((data) => {
                 setLineGraphData(data[0])
-                console.log(barChartData);
                 setIsLoading(true)
+                console.log("3");
             })
             .catch((error) => {
                 console.log(error);
             })
-    }, [props])
+    }, [itemCategory])
 
     if (isLoading) {
-        console.log("props", props);
         return (
             <>
                 <Grid container spacing={2}>
@@ -44,8 +61,9 @@ export const ViewOne = (props) => {
                     </Grid>
                     <Grid xs={0} md={4}>
     
-                        <BarChart data={barChartData}/>
-    
+                        <BarChart data={itemData}/>
+                        {/* box couold be used for watchlist or quick update */}
+                        <DoughnutChart /> 
                     </Grid>
     
                 </Grid>

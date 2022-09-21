@@ -23,27 +23,17 @@ export const BarChart = (props) => {
   useEffect(() => {
     setBarGraphName(props.data.name)
     setBarGraphData(props.data.orderHistory)
-    console.log("barGraphData here", barGraphData);
     if (barGraphData !== null) {
       setDateLabels(extractOrderInfo(barGraphData, "key")) // gets timestamps
       setQuantity(extractOrderInfo(barGraphData, "value")) // gets quantity
     }
 
     extractOrderInfo(barGraphData, 0) // gets timestamps
-    // setQuantity(extractOrderInfo(barGraphData, 1)) // gets quantity
-    // console.log("quantity", quantity);
   }, [barGraphData, props]);
-  // console.log(barGraphName);
 
   const extractOrderInfo = (orderData, accessor) => {
     let solution = [];
     try {
-      // let entries = Object.entries(orderData)
-      // console.log(entries);
-      // for (let i = 0; i < entries.length; i++) {
-      //   solution.push(entries[i][index])
-      // }
-      console.log("orderData ", orderData);
       for (let object in orderData) {
         if (accessor === "key") {
           solution.push(Object.keys(orderData[object]))
@@ -59,9 +49,6 @@ export const BarChart = (props) => {
 
     return solution;
   }
-
-  // console.log("timestamps ", dateLabels);
-  console.log("order history: ", quantity);
 
   const options = {
     scales: {
