@@ -33,9 +33,7 @@ const QuickUpdate = (props) => {
             <div>
             <TextField id= "outlined-basic" label="quantity" variant="outlined"/>
             </div>
-            <br/>
-            <Autocomplete disablePortal id= 'combo-box-demo' options={{categories}} sx= {{ width: 300 }} renderInput= {(params) => <TextField {...params } label="Category"/> }/>
-            <br/>
+
             <Button variant='outlined'>Submit</Button>
         </form>
         </>
