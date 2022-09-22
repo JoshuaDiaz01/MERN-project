@@ -93,21 +93,17 @@ export const InteractiveList = (props) => {
                                         return (item.category === category.groupCode)
                                     }).map(entry => entry.name)
 
-                                    // console.log("categoryName is : ", categoryName);
+
                                     
                                     const inflationString = categories.filter((category) => {
-                                        // console.log(category);
+
                                         return (item.category === category.groupCode)
                                     }).map(entry => {
-                                        console.log(entry.inflationIndexes);
+
                                         return entry.inflationIndexes
                                     })
 
-                                    console.log(item.inflationHistory[0]);
-
                                     const inflationArray = inflationString.toString().split(",")
-
-                                    // console.log("inflationArray is "+ inflationArray);
 
                                     return (
 
@@ -137,10 +133,10 @@ export const InteractiveList = (props) => {
                                                 : null} />
 
 {/* IF YOU DON'T HAVE INFLATION DATA FOR EVER CATEGORY, IT WILL CRASH. ONLY UNCOMMENT IF YOU DO. */}
-                                            <ListItemText primary={(((inflationString[0][0].value-inflationString[0][1].value)/inflationString[0][1].value)*100).toFixed(2) + " %"} 
+                                            {/* <ListItemText primary={(((inflationString[0][0].value-inflationString[0][1].value)/inflationString[0][1].value)*100).toFixed(2) + " %"} 
                                             secondary={secondary ? 
                                                 "Annual  " + (((inflationString[0][0].value-inflationString[0][11].value)/inflationString[0][11].value)*100).toFixed(1) + " %"
-                                            : null} />
+                                            : null} /> */}
 
                                         </ListItem>
 
