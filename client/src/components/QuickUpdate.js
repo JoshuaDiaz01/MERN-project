@@ -1,4 +1,4 @@
-import { Autocomplete, Button, Typography, TextField, InputLabel, Select, MenuItem, Paper, ListItemIcon, IconButton } from '@mui/material';
+import { Autocomplete, Button, Typography, TextField, InputLabel, Select, MenuItem, Paper, ListItemIcon, IconButton, Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const { updateItem, getItemById, deleteItem} = require('../services/localHostApiService')
@@ -40,14 +40,14 @@ const QuickUpdate = (props) => {
 
     return (
         <>
-        <Paper elevation={8} sx={{padding:1}}>
+        <Paper elevation={8} sx={{padding:1, paddingLeft: 3, paddingRight: 3}}>
 
 
             <Typography variant='h5' align="right">Quick Update</Typography>
             <form onSubmit={handleUpdateOnSubmit}>
                 <div>
                     <InputLabel size='medium'>Item</InputLabel>
-                    <Select value={id} label="Item" onChange={(e) => setId(e.target.value)}>
+                    <Select fullWidth="true" size="small" value={id} label="Item" onChange={(e) => setId(e.target.value)}>
                         {
                             inventory.map((item, i) => {
                                 return ( <MenuItem value={item._id} key={i}>{item.name}</MenuItem>
@@ -60,13 +60,16 @@ const QuickUpdate = (props) => {
                 </div>
                 <br />
                 <div>
-                    <TextField id="outlined-basic" label="quantity" variant="outlined" onChange={(event) => { setQuantity(event.target.value) }} />
+                    <TextField id="outlined-basic" label="quantity added" fullWidth="true" size="small" variant="outlined" onChange={(event) => { setQuantity(event.target.value) }} />
                 </div>
                 <br />
-                <Button variant='outlined' type='Submit'>Submit</Button>
-                <ListItemIcon>
+                <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
+                <Button variant='outlined' type='Submit'>Update Quantity</Button>
+                <Button variant='outlined' sx={{color:  "#F24F5B", borderColor: "#F24F5B"}}onClick={handleDeleteOnClick}><DeleteOutlineIcon/> Delete Item </Button>
+                {/* <ListItemIcon>
                     <IconButton onClick={handleDeleteOnClick}><DeleteOutlineIcon></DeleteOutlineIcon></IconButton>
-                </ListItemIcon>
+                </ListItemIcon> */}
+                </Box>
             </form>
             </Paper>
         </>
