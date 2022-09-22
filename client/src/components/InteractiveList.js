@@ -56,7 +56,7 @@ export const InteractiveList = (props) => {
     return (
 
         <>
-        <Paper elevation={8} sx={{padding:1}}>
+            <Paper elevation={8} sx={{ padding: 1 }}>
                 <Box sx={{ flexGrow: 1, maxWidth: "inherit", minWidth: "100%" }}>
 
                     <FormGroup row sx={{ marginLeft: 3 }}>
@@ -86,7 +86,33 @@ export const InteractiveList = (props) => {
 
 
 
-                            <List dense={dense} sx={{ maxWidth: "inherit" }}>
+                            <List dense={dense} sx={{ maxWidth: "inherit" }} >
+
+                                <ListItem key={"header"} secondaryAction={
+
+                                    <Typography variant="h8">
+                                        Quick <br></br>Update
+                                    </Typography>
+
+                                }>
+
+                                    <Typography sx={{ width: "12%" }} variant="body2">
+                                        Favorite
+                                    </Typography>
+
+
+                                    <ListItemText sx={{ width: "27%" }} primary="Item" secondary={secondary ?
+                                        "Item category"
+                                        : null} />
+                                    <ListItemText sx={{ width: "15%" }} primary="Quantity" secondary={secondary ?
+                                        "Last Order: "
+                                        : null} />
+
+                                    <ListItemText sx={{ width: "20%" }} primary="Inflation over month" secondary={secondary ?
+                                        "Annual inflation"
+                                        : null} />
+
+                                </ListItem>
 
                                 {inventory.map((item, i) => {
                                     const categoryName = categories.filter((category) => {
@@ -94,7 +120,7 @@ export const InteractiveList = (props) => {
                                     }).map(entry => entry.name)
 
 
-                                    
+
                                     const inflationString = categories.filter((category) => {
 
                                         return (item.category === category.groupCode)
@@ -112,14 +138,14 @@ export const InteractiveList = (props) => {
                                                 <LibraryAddOutlinedIcon fontSize={dense ? 'small' : 'medium'} color="primary" />
                                             </IconButton>
                                         }>
-                                            <ListItemIcon>
+                                            <ListItemIcon sx={{ width: "10%" }}>
                                                 <IconButton onClick={(e) => toggleFavorite(item)}>
                                                     {item.isFavorited ? <StarIcon fontSize={secondary ? 'medium' : 'medium'} color="primary" /> : <StarOutlineOutlinedIcon fontSize={secondary ? 'medium' : 'medium'} color="primary" />}
 
                                                 </IconButton>
                                             </ListItemIcon>
 
-                                            <ListItemButton edge="end">
+                                            <ListItemButton edge="end" sx={{ width: "30%" }}>
                                                 <MUILink href={`/items/${item._id}`}>
                                                     <ListItemText sx={{ width: 200 }}
                                                         primary={item.name}
@@ -127,17 +153,19 @@ export const InteractiveList = (props) => {
                                                     />
 
                                                 </MUILink>
-                                            </ListItemButton>
-                                            <ListItemText primary={item.quantity} secondary={secondary ? 
-                                                item.orderHistory? "Last order not available": "Last Order: " + item.orderHistory
+                                            </ListItemButton >
+                                            <ListItemText sx={{ width: "15%"}} primary={item.quantity} secondary={secondary ?
+                                                item.orderHistory ? "Not Available" :  item.orderHistory
                                                 : null} />
 
-{/* IF YOU DON'T HAVE INFLATION DATA FOR EVER CATEGORY, IT WILL CRASH. ONLY UNCOMMENT IF YOU DO. */}
-                                            {/* <ListItemText primary={(((inflationString[0][0].value-inflationString[0][1].value)/inflationString[0][1].value)*100).toFixed(2) + " %"} 
-                                            secondary={secondary ? 
-                                                "Annual  " + (((inflationString[0][0].value-inflationString[0][11].value)/inflationString[0][11].value)*100).toFixed(1) + " %"
-                                            : null} /> */}
-
+                                            {/* IF YOU DON'T HAVE INFLATION DATA FOR EVER CATEGORY, IT WILL CRASH. ONLY UNCOMMENT IF YOU DO. */}
+                                            {inflationString.length > 0 ?
+                                                <ListItemText sx={{ width: "20%" }} primary={(((inflationString[0][0].value - inflationString[0][1].value) / inflationString[0][1].value) * 100).toFixed(2) + " %"}
+                                                    secondary={secondary ?
+                                                        "Annual  " + (((inflationString[0][0].value - inflationString[0][11].value) / inflationString[0][11].value) * 100).toFixed(1) + " %"
+                                                        : null} />
+                                                        : <ListItemText sx={{textAlign: "flex-start"}}>No Data</ListItemText>
+                                            }
                                         </ListItem>
 
                                     )
