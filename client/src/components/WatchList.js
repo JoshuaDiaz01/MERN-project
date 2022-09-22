@@ -1,6 +1,6 @@
 import StarIcon from '@mui/icons-material/Star';
 import Paper from '@mui/material/Paper';
-import { List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { IconButton, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import axios from 'axios'
 
 
@@ -18,9 +18,9 @@ const WatchList = (props) => {
 
     return (
         <>
-        <Paper elevation={8} sx={{padding:1}}>
+            <Paper elevation={8} sx={{ padding: 1 }}>
                 <Typography variant="h5" align="right">Watch List</Typography>
-                <Typography variant="h6" align="center" sx={{marginRight: 5}}>In Inventory</Typography>
+                <Typography variant="h6" align="center" sx={{ marginRight: 5 }}>In Inventory</Typography>
 
                 <List>
                     {
@@ -34,19 +34,21 @@ const WatchList = (props) => {
 
                             return (
                                 <ListItem key={index}>
-                                    <ListItemIcon onClick={(e) => toggleFavorite(entry)}><StarIcon fontSize={'medium'} color="primary" /></ListItemIcon>
+                                    <ListItemIcon onClick={(e) => toggleFavorite(entry)}>
+                                        <IconButton><StarIcon fontSize={'medium'} color="primary" /></IconButton>
+                                    </ListItemIcon>
                                     <ListItemText key={index} >{entry.name}</ListItemText>
 
-                                    {/* IF YOU DON'T HAVE INFLATION DATA FOR EVER CATEGORY, IT WILL CRASH. ONLY UNCOMMENT IF YOU DO. */}
-                                    <ListItemText primary={(((inflationArray[0] - inflationArray[1]) / inflationArray[1]) * 100).toFixed(2) + " %"} />
+                                    {/* IF YOU DON'T HAVE INFLATION DATA FOR EVER CATEGORY, IT WILL CRASH. ONLY UNCOMMENT IF YOU DO. */ }
+                            <ListItemText primary={(((inflationArray[0] - inflationArray[1]) / inflationArray[1]) * 100).toFixed(2) + " %"} />
 
                                 </ListItem>
-                            )
+                )
                         })
                     }
-                </List>
-                <Typography variant="h6" align="center" sx={{marginRight: 5}}>Not In Inventory</Typography>
-            </Paper>
+            </List>
+            <Typography variant="h6" align="center" sx={{ marginRight: 5 }}>Not In Inventory</Typography>
+        </Paper>
         </>
     )
 }
