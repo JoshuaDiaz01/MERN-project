@@ -10,10 +10,12 @@ const QuickUpdate = (props) => {
     const [category, setCategory] = useState('');
     const [orderHistory, setOrderHistory] = useState([]);
     const { inventory, updateInventoryItem } = props
+    const [test, setTest] = useState("")
 
     const handleUpdateOnSubmit = (e) => {
         e.preventDefault();
         const editedItem = getItemById(id);
+        setTest(editedItem.quantity);
         const newItem = {
             name: editedItem.name,
             quantity,
@@ -25,6 +27,7 @@ const QuickUpdate = (props) => {
             .then((item) => updateInventoryItem(item))
             .catch((err) => console.log(err));
     }
+
 
 
     return (

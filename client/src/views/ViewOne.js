@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { BarChart } from "../components/graphs/BarChart";
 import { LineGraph } from "../components/graphs/LineGraph"
 import { DoughnutChart } from "../components/graphs/DoughnutChart"
+import QuickUpdate from "../components/QuickUpdate";
 
 import { getCategoryByGroupCode } from "../services/categoryService"
 import { getItemById } from "../services/localHostApiService"
@@ -40,8 +41,6 @@ export const ViewOne = (props) => {
         .catch((error) => {
           console.log(error);
         })
-
-
     }, [id])
 
     if (isLoading) {
