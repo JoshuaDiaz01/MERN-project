@@ -147,20 +147,23 @@ const AddNew = (props) => {
 
     return (
         <>
-        <Paper elevation={8} sx={{padding:1}}>
+        <Paper elevation={8} sx={{padding:1, paddingLeft: 3, paddingRight: 3}}>
         <Typography variant='h5' align="right">Add new</Typography>
         <form onSubmit={handleCreateOnSubmit}>
             <Box>
-                <TextField id= "outlined-basic"  label="Name" variant="outlined" sx={{width: "80%"}} size="small" onChange={(e) => setName(e.target.value)}/>
+                <TextField id= "outlined-basic"  label="Name" variant="outlined" fullWidth="true" size="small" onChange={(e) => setName(e.target.value)}/>
             </Box>
             <br/>
             <div>
-            <TextField id= "outlined-basic" label="quantity" variant="outlined" onChange={(e) => setQuantity(e.target.value)}/>
+            <TextField id= "outlined-basic" label="quantity" variant="outlined" fullWidth="true" size="small" onChange={(e) => setQuantity(e.target.value)}/>
             </div>
             <br/>
-            <Autocomplete disablePortal id= 'combo-box-demo' options={categoryOptions} sx= {{ width: 300 }} onChange={(a, b) => setCategory(b.id)} renderInput= {(params) => <TextField {...params} label="Category" />}/>
+            <Autocomplete disablePortal id= 'combo-box-demo' options={categoryOptions} fullWidth="true" size="small" onChange={(a, b) => setCategory(b.id)} renderInput= {(params) => <TextField {...params} label="Category" />}/>
             <br/>
-            <Button variant='outlined' type='submit'>Submit</Button>
+
+            <Button variant='outlined' type='submit'>Add New Item</Button>
+
+
         </form>
         </Paper>
         </>
