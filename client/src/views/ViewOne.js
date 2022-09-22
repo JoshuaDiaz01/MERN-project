@@ -26,21 +26,21 @@ export const ViewOne = (props) => {
 
     useEffect(() => {
         getItemById(id)
-        .then((data) => {
-          setItemData(data);
+            .then((data) => {
+                setItemData(data);
 
-          getCategoryByGroupCode(data.category)
-              .then((data) => {
-                  setLineGraphData(data)
-              })
-              .catch((error) => {
-                  console.log(error);
-              })
-          setIsLoading(true)
-        })
-        .catch((error) => {
-          console.log(error);
-        })
+                getCategoryByGroupCode(data.category)
+                    .then((data) => {
+                        setLineGraphData(data)
+                    })
+                    .catch((error) => {
+                        console.log(error);
+                    })
+                setIsLoading(true)
+            })
+            .catch((error) => {
+                console.log(error);
+            })
     }, [id])
 
     if (isLoading) {
@@ -49,12 +49,12 @@ export const ViewOne = (props) => {
                 <Grid container spacing={10}>
                     <Grid item xs={12} md={8}>
 
-                        <LineGraph data={lineGraphData}/>
-                        
-                    </Grid>
-                    <Grid item xs={12} md={4} sx={{pl: 5}}>
+                        <LineGraph data={lineGraphData} />
 
-                        <BarChart data={itemData}/>
+                    </Grid>
+                    <Grid item xs={12} md={4} sx={{ pl: 5 }}>
+
+                        <BarChart data={itemData} />
 
                     </Grid>
                     {/* <Grid item xs={0}>

@@ -11,7 +11,7 @@ import {
     Legend,
   } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import { faker } from '@faker-js/faker';
+import { Paper } from '@mui/material';
 
 
 export const LineGraph = (props) => {
@@ -127,7 +127,10 @@ export const LineGraph = (props) => {
 
   return (
       // <Line width={1000} height={1000} options={options} data={data} />
-      <Line options={options} data={data} />
+      <Paper elevation={8}>
+
+        <Line options={options} data={data} />
+      </Paper>
   )
 }
 
