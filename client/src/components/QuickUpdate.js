@@ -10,19 +10,13 @@ const QuickUpdate = (props) => {
     const [quantity, setQuantity] = useState('');
     const [category, setCategory] = useState('');
     const [orderHistory, setOrderHistory] = useState([]);
-<<<<<<< Updated upstream
-    const { inventory, updateInventoryItem } = props
-    const [test, setTest] = useState("")
-=======
     const { inventory, updateInventoryItem , removeFromDom} = props
 
 
->>>>>>> Stashed changes
 
     const handleUpdateOnSubmit = (e) => {
         e.preventDefault();
         const editedItem = getItemById(id);
-        setTest(editedItem.quantity);
         const newItem = {
             name: editedItem.name,
             quantity: console.log(editedItem.quantity) ,
