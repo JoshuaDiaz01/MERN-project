@@ -5,7 +5,7 @@ import axios from 'axios'
 
 
 const WatchList = (props) => {
-    const {inventory, updateInventoryItem} = props
+    const {inventory, updateInventoryItem, categories} = props
 
     const toggleFavorite = async (item) => {
         const updatedItem = {...item, isFavorited: !item.isFavorited}
@@ -24,11 +24,21 @@ const WatchList = (props) => {
             <List>
             {
                 inventory.filter((item) => item.isFavorited).map((entry, index) => {
+
+                    // Code to get inflation data for the item based on its category
+                    const inflationString = categories.filter((category) => {
+                        return (entry.category === category.groupCode)
+                    }).map(entry => entry.inflationIndexes + ",")
+                    const inflationArray = inflationString.toString().split(",")
+
                     return (
                             <ListItem key={index}>
-                                <ListItemIcon onClick={(e) => toggleFavorite(entry)}><StarIcon fontSize={'large'} color="primary"/></ListItemIcon>
+                                <ListItemIcon onClick={(e) => toggleFavorite(entry)}><StarIcon fontSize={'medium'} color="primary"/></ListItemIcon>
                                 <ListItemText key={index} >{entry.name}</ListItemText> 
-                                <ListItemIcon><TrendingFlatOutlined fontSize='medium' color="success" /></ListItemIcon>
+                                
+                                {/* IF YOU DON'T HAVE INFLATION DATA FOR EVER CATEGORY, IT WILL CRASH. ONLY UNCOMMENT IF YOU DO. */}
+                                            <ListItemText primary={(((inflationArray[0]-inflationArray[1])/inflationArray[1])*100).toFixed(2) + " %"} />
+
                             </ListItem>
                     )
                 })
