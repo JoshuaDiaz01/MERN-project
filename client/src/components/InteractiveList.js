@@ -56,7 +56,7 @@ export const InteractiveList = (props) => {
     return (
 
         <>
-            <Paper>
+        <Paper elevation={8} sx={{padding:1}}>
                 <Box sx={{ flexGrow: 1, maxWidth: "inherit", minWidth: "100%" }}>
 
                     <FormGroup row sx={{ marginLeft: 3 }}>

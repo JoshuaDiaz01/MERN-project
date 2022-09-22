@@ -1,7 +1,7 @@
 import InteractiveList from "../components/InteractiveList";
 import WatchList from "../components/WatchList";
 import Grid from '@mui/material/Grid'; // Grid version 1
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import AddNew from "../components/AddNew";
@@ -21,13 +21,13 @@ export const Main = (props) => {
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/items')
-        .then(res => {setInventory(res.data)})
+            .then(res => { setInventory(res.data) })
         setIsUpdated(false)
     }, [])
 
-    useEffect(()=> {
+    useEffect(() => {
         axios.get('http://localhost:8000/api/categories')
-        .then(res => {setCategories(res.data)})
+            .then(res => { setCategories(res.data) })
     }, [])
 
     // update the dom while setting the state
@@ -37,9 +37,9 @@ export const Main = (props) => {
     // }
     const updateInventoryItem = (updatedItem) => {
         const updatedInventory = inventory.map((item) => {
-            if(item._id === updatedItem._id){
+            if (item._id === updatedItem._id) {
                 return updatedItem
-            }else{
+            } else {
                 return item
             }
         })
@@ -49,29 +49,33 @@ export const Main = (props) => {
     const viewOne = (id) => {
 
     }
-    
+
     return (
         <>
-        <div>
-        
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={8}>
-                    {inventory.length > 0 && categories.length > 0 && <InteractiveList inventory={inventory} categories={categories} updateInventoryItem={updateInventoryItem}
-                    />}
-                    
-                    
+            <div>
+
+                <Grid container spacing={2}>
+                    <Grid item xs={12} md={8}>
+                        {inventory.length > 0 && categories.length > 0 && <InteractiveList inventory={inventory} categories={categories} updateInventoryItem={updateInventoryItem}
+                        />}
+
+
+
+                    </Grid>
+                    <Grid item xs={0} md={4}>
+                        <Box sx={{ marginBottom: 2 }}>
+                            {inventory.length > 0 && categories.length > 0 && <WatchList inventory={inventory} categories={categories} updateInventoryItem={updateInventoryItem} />}
+                        </Box>
+                        <Box sx={{ marginBottom: 2 }}>
+                            <AddNew categories={categories} />
+                        </Box>
+                        <QuickUpdate inventory={inventory} updateInventoryItem={updateInventoryItem} />
+                    </Grid>
 
                 </Grid>
-                <Grid item xs={0} md={4}>
-                {inventory.length > 0 && categories.length > 0 && <WatchList inventory={inventory} categories={categories} updateInventoryItem={updateInventoryItem}/>}
-                <AddNew categories = {categories} />
-                <QuickUpdate inventory = {inventory} updateInventoryItem= {updateInventoryItem}/>
-                </Grid>
-
-            </Grid>
-        </div>
+            </div>
         </>
-        
+
     )
 }
 

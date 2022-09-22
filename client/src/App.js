@@ -4,7 +4,7 @@ import { Main } from '../src/views/Main'
 import {ViewOne} from './views/ViewOne'
 import NavBar from "./components/NavBar";
 
-import { createTheme, ThemeProvider, CssBaseline, Typography} from '@mui/material';
+import { createTheme, ThemeProvider, CssBaseline, Typography, Box} from '@mui/material';
 import {
   Link,
   Route,
@@ -12,11 +12,6 @@ import {
   Navigate
 
 } from 'react-router-dom';
-
-import { purple } from '@mui/material/colors'
-
-const color = purple[900];
-
 
 
 function App() {
@@ -48,8 +43,9 @@ function App() {
 
       <CssBaseline />
 
-      <div>
+      <Box sx={{backgroundColor: "primary.main"}}>
         <NavBar></NavBar>
+        <Box sx={{padding: 3}}>
         <Routes>
           <Route path="/" element={<Main/>} />
           <Route path="items/:id" element={ <ViewOne/> }/>
@@ -59,8 +55,8 @@ function App() {
         {/* <ViewOne itemData={itemData}/> */}
 
         
-
-      </div>
+        </Box>
+      </Box>
     </ThemeProvider>
 
   );

@@ -1,4 +1,4 @@
-import { Autocomplete, Button, Typography, TextField, InputLabel, Select, MenuItem } from '@mui/material';
+import { Autocomplete, Button, Typography, TextField, InputLabel, Select, MenuItem, Paper } from '@mui/material';
 import { useState } from 'react';
 const { updateItem, getItemById } = require('../services/localHostApiService')
 
@@ -29,7 +29,10 @@ const QuickUpdate = (props) => {
 
     return (
         <>
-            <Typography variant='h3'>Quick Update</Typography>
+        <Paper elevation={8} sx={{padding:1}}>
+
+
+            <Typography variant='h5' align="right">Quick Update</Typography>
             <form onSubmit={handleUpdateOnSubmit}>
                 <div>
                     <InputLabel size='medium'>Item</InputLabel>
@@ -51,6 +54,7 @@ const QuickUpdate = (props) => {
                 <br />
                 <Button variant='outlined' type='Submit'>Submit</Button>
             </form>
+            </Paper>
         </>
     )
 }

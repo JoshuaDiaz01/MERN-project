@@ -1,4 +1,4 @@
-import { Autocomplete, Button, Typography , TextField} from '@mui/material';
+import { Autocomplete, Button, Typography , TextField, Paper, Box} from '@mui/material';
 import {useState} from 'react';
 const { createItem } = require('../services/localHostApiService')
 
@@ -146,11 +146,12 @@ const AddNew = (props) => {
 
     return (
         <>
-        <Typography variant='h3'>Add new</Typography>
+        <Paper elevation={8} sx={{padding:1}}>
+        <Typography variant='h5' align="right">Add new</Typography>
         <form onSubmit={handleCreateOnSubmit}>
-            <div>
-                <TextField id= "outlined-basic"  label="Name" variant="outlined" onChange={(e) => setName(e.target.value)}/>
-            </div>
+            <Box>
+                <TextField id= "outlined-basic"  label="Name" variant="outlined" sx={{width: "80%"}} size="small" onChange={(e) => setName(e.target.value)}/>
+            </Box>
             <br/>
             <div>
             <TextField id= "outlined-basic" label="quantity" variant="outlined" onChange={(e) => setQuantity(e.target.value)}/>
@@ -160,6 +161,7 @@ const AddNew = (props) => {
             <br/>
             <Button variant='outlined' type='submit'>Submit</Button>
         </form>
+        </Paper>
         </>
     )
 }
