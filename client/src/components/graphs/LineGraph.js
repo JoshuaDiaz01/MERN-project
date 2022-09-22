@@ -16,21 +16,40 @@ import { faker } from '@faker-js/faker';
 
 export const LineGraph = (props) => {
   const [lineGraphName, setLineGraphName] = useState("");
-  const [lineGraphData, setLineGraphData] = useState([]);
-
-  
+  const [axesLabels, setAxesLabels] = useState([]);
+  const [dataPoints, setDataPoints] = useState([]);
 
   useEffect(() => {
+    console.log(props.data.name);
     setLineGraphName(props.data.name)
-    setLineGraphData(props.data.inflationIndexes)
-  }, [])
+    if (props.data.inflationIndexes !== null) {
+      setAxesLabels(getIndexes(props.data.inflationIndexes, "timeStamps"));
+      setDataPoints(getIndexes(props.data.inflationIndexes, "indexValues"));
+    }
+  }, [props])
+
+
+  const getIndexes = (dataHistory, accessor) => {
+    let solution = [];
+      for (let entry in dataHistory) {
+        if (accessor === "timeStamps") {
+          solution.push(dataHistory[entry].year + " " + dataHistory[entry].periodName)
+        } else {
+          solution.push(dataHistory[entry].value)
+        }
+      }
+      console.log(solution);
+      return solution.reverse();
+
+
+  }
 
   
   const options = {
     scales: {
       x: {
         ticks: {
-          color: "white"
+          color: "primary.main"
         },
 
         grid: {
@@ -41,12 +60,12 @@ export const LineGraph = (props) => {
           display: true,
           text: 'Your Title',
         },
-        color: "white"
+        color: "black"
       }, 
 
       y: {
         ticks: {
-          color: "white"
+          color: "black"
         },
         
         grid: {
@@ -58,39 +77,34 @@ export const LineGraph = (props) => {
           text: 'Index'
         }
       }
-    }  ,
+    } ,
       responsive: true,
       plugins: {
         legend: {
           position: 'top',
           labels: {
-            color: "white"
+            color: "black"
           }
         },
         title: {
           display: true,
           text: `Inflation indexes of ${lineGraphName}`,
-          color: "white"
+          color: "black"
         },
-        maintainAspectRation: false
+        maintainAspectRation: true
       },
     };
     
-    const labels = ['January20', 'February20', 'March20', 'April20', 'May20', 'June20', 'July20',
-    'August20', 'September20', 'October20', 'November20', 'December20', 
-    'January21', 'February21', 'March21', 'April21', 'May21', 'June21', 'July21',
-    'August21', 'September21', 'October21', 'November21', 'December21',
-    'January22', 'February22', 'March22', 'April22', 'May22', 'June22', 'July22',
-    'August22', 'September22', 'October22', 'November22', 'December22'];
+
+    const labels = axesLabels
     
     const data = {
       labels,
       datasets: [
         {
           label: lineGraphName,
-          // data: labels.map(() => faker.datatype.number({ min: -1000, max: 1000 })),
-          data: lineGraphData,
-          borderColor: 'rgb(255, 99, 132)',
+          data: dataPoints,
+          borderColor: '#F24F5B',
           backgroundColor: 'rgba(255, 99, 132, 0.5)',
         },
         // {
@@ -112,7 +126,8 @@ export const LineGraph = (props) => {
     );
 
   return (
-      <Line width={1000} height={1000} options={options} data={data} />
+      // <Line width={1000} height={1000} options={options} data={data} />
+      <Line options={options} data={data} />
   )
 }
 

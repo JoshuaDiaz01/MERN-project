@@ -54,7 +54,7 @@ export const BarChart = (props) => {
     scales: {
       x: {
         ticks: {
-          color: "white"
+          color: "primary.main"
         },
 
         grid: {
@@ -138,7 +138,9 @@ export const BarChart = (props) => {
     );
 
   return (
-      <Bar width={1000} height={1000} options={options} data={data} />
+      // <Bar width={1000} height={1000} options={options} data={data} />
+      <Bar options={options} data={data} />
+      
   )
 }
 

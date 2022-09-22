@@ -10,7 +10,6 @@ export const getAllItems = async() => {
 }
 
 export const getItemById = async(id) => {
-    console.log("getItemById:");
     const res = await http.get(`/items/${id}`);
     return res.data
 }
