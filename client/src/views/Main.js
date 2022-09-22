@@ -50,10 +50,11 @@ export const Main = (props) => {
         setInventory(inventory.filter(item => item._id !== itemId));
     }
 
-    const viewOne = (id) => {
-
+    const addInventoryItem = (newItem) => {
+        console.log("main add inventory")
+        const updatedInventory = [newItem, ...inventory]
+        setInventory(updatedInventory);
     }
-
     return (
         <>
             <div>
@@ -71,7 +72,7 @@ export const Main = (props) => {
                             {inventory.length > 0 && categories.length > 0 && <WatchList inventory={inventory} categories={categories} updateInventoryItem={updateInventoryItem} />}
                         </Box>
                         <Box sx={{ marginBottom: 2 }}>
-                            <AddNew categories={categories} />
+                            <AddNew categories={categories} addInventoryItem={addInventoryItem}/>
                         </Box>
                         <QuickUpdate inventory={inventory} updateInventoryItem={updateInventoryItem} removeFromDom= {removeFromDom}/>
                     </Grid>

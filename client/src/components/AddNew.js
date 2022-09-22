@@ -7,9 +7,9 @@ const AddNew = (props) => {
     const [quantity, setQuantity] = useState('');
     const [category, setCategory] = useState('');
     const [orderHistory, setOrderHistory] = useState([]);
-    const [inflationHistory, setInflationHostory] = useState([]);
+    const [inflationHistory, setInflationHistory] = useState([]);
     const [isFavorited, setIsFavorited] = useState(false);
-    const {categories} = props
+    const {addInventoryItem} = props
 
     const categoryOptions = [
         {
@@ -127,9 +127,7 @@ const AddNew = (props) => {
     ];
 
     const handleCreateOnSubmit = (e) => {
-        console.log(quantity)
-        console.log(name)
-        console.log(category)
+
         e.preventDefault();
         const newItem = {
             name,
@@ -140,7 +138,10 @@ const AddNew = (props) => {
             isFavorited
         }
         createItem(newItem)
-        .then((item) => console.log(item))
+        .then((item) => {
+            addInventoryItem(item)
+
+        })
         .catch((err) => console.log(err));
     }
 
