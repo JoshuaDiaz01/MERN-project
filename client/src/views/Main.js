@@ -46,6 +46,10 @@ export const Main = (props) => {
         setInventory(updatedInventory);
     }
 
+    const removeFromDom = (itemId) => {
+        setInventory(inventory.filter(item => item._id !== itemId));
+    }
+
     const viewOne = (id) => {
 
     }
@@ -69,7 +73,7 @@ export const Main = (props) => {
                         <Box sx={{ marginBottom: 2 }}>
                             <AddNew categories={categories} />
                         </Box>
-                        <QuickUpdate inventory={inventory} updateInventoryItem={updateInventoryItem} />
+                        <QuickUpdate inventory={inventory} updateInventoryItem={updateInventoryItem} removeFromDom= {removeFromDom}/>
                     </Grid>
 
                 </Grid>

@@ -1,6 +1,7 @@
-import { Autocomplete, Button, Typography, TextField, InputLabel, Select, MenuItem, Paper } from '@mui/material';
-import { useState } from 'react';
-const { updateItem, getItemById } = require('../services/localHostApiService')
+import { Autocomplete, Button, Typography, TextField, InputLabel, Select, MenuItem, Paper, ListItemIcon, IconButton } from '@mui/material';
+import { useEffect, useState } from 'react';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+const { updateItem, getItemById, deleteItem} = require('../services/localHostApiService')
 
 
 const QuickUpdate = (props) => {
@@ -9,8 +10,14 @@ const QuickUpdate = (props) => {
     const [quantity, setQuantity] = useState('');
     const [category, setCategory] = useState('');
     const [orderHistory, setOrderHistory] = useState([]);
+<<<<<<< Updated upstream
     const { inventory, updateInventoryItem } = props
     const [test, setTest] = useState("")
+=======
+    const { inventory, updateInventoryItem , removeFromDom} = props
+
+
+>>>>>>> Stashed changes
 
     const handleUpdateOnSubmit = (e) => {
         e.preventDefault();
@@ -18,7 +25,7 @@ const QuickUpdate = (props) => {
         setTest(editedItem.quantity);
         const newItem = {
             name: editedItem.name,
-            quantity,
+            quantity: console.log(editedItem.quantity) ,
             category: editedItem.category,
             orderHistory: editedItem.orderHistory,
         }
@@ -27,6 +34,13 @@ const QuickUpdate = (props) => {
             .then((item) => updateInventoryItem(item))
             .catch((err) => console.log(err));
     }
+
+    const handleDeleteOnClick = (e) => {
+        deleteItem(id)
+        .then((res) => removeFromDom(id))
+        .catch((err) => console.error(err))
+    }
+
 
 
 
@@ -56,6 +70,9 @@ const QuickUpdate = (props) => {
                 </div>
                 <br />
                 <Button variant='outlined' type='Submit'>Submit</Button>
+                <ListItemIcon>
+                    <IconButton onClick={handleDeleteOnClick}><DeleteOutlineIcon></DeleteOutlineIcon></IconButton>
+                </ListItemIcon>
             </form>
             </Paper>
         </>
