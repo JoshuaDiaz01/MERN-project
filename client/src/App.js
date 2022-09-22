@@ -4,7 +4,7 @@ import { Main } from '../src/views/Main'
 import {ViewOne} from './views/ViewOne'
 import NavBar from "./components/NavBar";
 
-import { createTheme, ThemeProvider, CssBaseline, Typography, Box} from '@mui/material';
+import { createTheme, ThemeProvider, CssBaseline, Typograpyh, Box} from '@mui/material';
 import {
   Link,
   Route,
@@ -28,15 +28,7 @@ function App() {
     }
   })
 
-  // useEffect(() => {
-  //   getItemById("632a38d1ba5831a78f9c5e0e")
-  //     .then((data) => {
-  //       setItemData(data);
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     })
-  // }, [])
+
 
 
   return (

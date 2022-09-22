@@ -118,6 +118,7 @@ export const InteractiveList = (props) => {
                                     const categoryName = categories.filter((category) => {
                                         return (item.category === category.groupCode)
                                     }).map(entry => entry.name)
+<<<<<<< Updated upstream
 
 
 
@@ -131,6 +132,19 @@ export const InteractiveList = (props) => {
 
                                     const inflationArray = inflationString.toString().split(",")
 
+=======
+                                    
+                                    const inflationString = categories.filter((category) => {
+                                        return (item.category === category.groupCode)
+                                    }).map(entry => {
+                                        return entry.inflationIndexes
+                                    })
+
+
+                                    const inflationArray = inflationString.toString().split(",")
+
+
+>>>>>>> Stashed changes
                                     return (
 
                                         <ListItem key={i} secondaryAction={

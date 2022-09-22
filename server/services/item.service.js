@@ -36,10 +36,19 @@ const updateItemById = async (id, data) => {
     return updatedItem
 }
 
+const updateOrderHistory = async (id, data) => {
+    console.log("do i ever get here", data.orderHistory[0]);
+    const updatedItem = await Item.updateOne({_id: id}, {$push: { orderHistory: data.orderHistory[0] }})
+
+    return updatedItem;
+}
+
+
 module.exports = {
     createItem,
     getAllItems,
     getItemById,
     deleteItemById,
-    updateItemById
+    updateItemById,
+    updateOrderHistory
 };

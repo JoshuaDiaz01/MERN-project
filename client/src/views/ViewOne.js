@@ -11,8 +11,10 @@ import QuickUpdate from "../components/QuickUpdate";
 
 import { getCategoryByGroupCode } from "../services/categoryService"
 import { getItemById } from "../services/localHostApiService"
+import axios from 'axios';
 
 import Grid from '@mui/material/Grid'; // Grid version 1
+import WatchList from "../components/WatchList";
 
 export const ViewOne = (props) => {
     const { id } = useParams();
@@ -21,8 +23,29 @@ export const ViewOne = (props) => {
     const [isLoading, setIsLoading] = useState(false);
     // const [itemCategory, setItemCategory] = useState("");
     const [itemData, setItemData] = useState([])
+    const [allItems, setAllItems] = useState([])
+    const [allCategories, setAllCategories] = useState([])
 
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/items')
+            .then(res => { setAllItems(res.data) })
+    }, [])
 
+    useEffect(() => {
+        axios.get('http://localhost:8000/api/categories')
+            .then(res => { setAllCategories(res.data) })
+    }, [])
+
+    const updateInventoryItem = (updatedItem) => {
+        const updatedInventory = allItems.map((item) => {
+            if (item._id === updatedItem._id) {
+                return updatedItem
+            } else {
+                return item
+            }
+        })
+        setAllItems(updatedInventory);
+    }
 
     useEffect(() => {
         getItemById(id)
@@ -54,14 +77,15 @@ export const ViewOne = (props) => {
                     </Grid>
                     <Grid item xs={12} md={4} sx={{ pl: 5 }}>
 
+<<<<<<< Updated upstream
                         <BarChart data={itemData} />
 
+=======
+                        <BarChart data={itemData}/>
+                        <WatchList inventory={allItems} categories={allCategories} updateInventoryItem={updateInventoryItem}/>
+>>>>>>> Stashed changes
                     </Grid>
-                    {/* <Grid item xs={0}>
 
-                        <DoughnutChart /> 
-
-                    </Grid> */}
                 </Grid>
             </>
         )

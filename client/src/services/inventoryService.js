@@ -30,3 +30,11 @@ export const deleteItemById  = async (id) => {
     const res = await http.delete(`/${DB_NAME}s/${id}`);
     return res.data;
 }
+
+export const updateOrderHistoryById = async (id, data) => {
+    console.log(data);
+    const res = await http.put(`/items/orderHistory/${id}`, data);
+    console.log(res.data);
+    return res.data;
+}
+

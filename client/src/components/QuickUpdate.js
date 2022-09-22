@@ -1,13 +1,21 @@
+<<<<<<< Updated upstream
 import { Autocomplete, Button, Typography, TextField, InputLabel, Select, MenuItem, Paper, ListItemIcon, IconButton, Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 const { updateItem, getItemById, deleteItem} = require('../services/localHostApiService')
+=======
+import { Autocomplete, Button, Typography, TextField, InputLabel, Select, MenuItem, Paper } from '@mui/material';
+import { useState } from 'react';
+import { updateOrderHistoryById } from "../services/inventoryService"
+
+const { updateItem, getItemById } = require('../services/localHostApiService')
+>>>>>>> Stashed changes
 
 
 const QuickUpdate = (props) => {
     const [id, setId] = useState({});
-    const [name, setName] = useState('');
     const [quantity, setQuantity] = useState('');
+<<<<<<< Updated upstream
     const [category, setCategory] = useState('');
     const [orderHistory, setOrderHistory] = useState([]);
     const { inventory, updateInventoryItem , removeFromDom} = props
@@ -36,7 +44,54 @@ const QuickUpdate = (props) => {
     }
 
 
+=======
+    const [newQuantity, setNewQuantity] = useState("");
 
+
+    const { inventory, updateInventoryItem } = props
+
+    const handleUpdateOnSubmit = (e) => {
+        e.preventDefault();
+        console.log(id);
+        getItemById(id)
+            .then((data) => {
+                console.log(getTime());
+                console.log(data.orderHistory);
+                const newItem = {
+                    name: data.name,
+                    quantity: data.quantity += parseInt(quantity),
+                    category: data.category,
+                    isFavorited: data.isFavorited,
+                }
+                console.log(data.orderHistory);
+                console.log(newItem);
+                updateItem(id,newItem)
+                    .then((item) => updateInventoryItem(item))
+                    .catch((err) => console.log(err));
+
+                updateOrderHistoryById(id, getTime())
+                    .then((item) => {
+                        console.log(item);
+                        updateInventoryItem(item)
+                    })
+                    .catch((error) => console.log(error));
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+            
+        }
+>>>>>>> Stashed changes
+
+        const getTime = () => {
+            let test = {"orderHistory": []}
+            let orderEntry = {};
+            let date = Date(Date.now());
+            let dateToString = date.toString();
+            orderEntry[dateToString] = parseInt(quantity);
+            test.orderHistory.push(orderEntry); 
+            return test;
+        }
 
     return (
         <>
@@ -76,4 +131,4 @@ const QuickUpdate = (props) => {
     )
 }
 
-export default QuickUpdate
+export default QuickUpdate;

@@ -49,7 +49,7 @@ export const LineGraph = (props) => {
     scales: {
       x: {
         ticks: {
-          color: "primary.main"
+          color: "white"
         },
 
         grid: {
@@ -60,12 +60,12 @@ export const LineGraph = (props) => {
           display: true,
           text: 'Your Title',
         },
-        color: "black"
+        color: "white"
       }, 
 
       y: {
         ticks: {
-          color: "black"
+          color: "white"
         },
         
         grid: {
@@ -83,13 +83,13 @@ export const LineGraph = (props) => {
         legend: {
           position: 'top',
           labels: {
-            color: "black"
+            color: "white"
           }
         },
         title: {
           display: true,
           text: `Inflation indexes of ${lineGraphName}`,
-          color: "black"
+          color: "white"
         },
         maintainAspectRation: true
       },
