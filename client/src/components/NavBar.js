@@ -14,6 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import Image from 'mui-image'
 import inventori_logo from './images/inventori_logo.jpeg'
+import { sizing } from '@mui/system';
+
 
 
 // const pages = ['Products', 'Pricing', 'Blog'];
@@ -38,10 +40,16 @@ const NavBar = () => {
     setAnchorElUser(null);
   };
 
+
   return (
-    <AppBar position="static" justify = "space-between">
-      <Container maxWidth="xl" justify = "space-between">
-        <Toolbar disableGutters justify = "space-between">
+    <AppBar position="static">
+      <Container maxWidth="xl" >
+        <Toolbar disableGutters sx={{
+      width: "100%",
+      mx: "auto",
+      justifyContent: "display-flex",
+      alignItems: "left"
+    }}>
           <Image src= {inventori_logo} width= {100} height= {100} href="/"></Image>
           <Typography
             variant="h6"
@@ -56,6 +64,7 @@ const NavBar = () => {
               letterSpacing: '.3rem',
               color: '#b2abf2',
               textDecoration: 'none',
+              
             }}
           >
             Inventori Home
