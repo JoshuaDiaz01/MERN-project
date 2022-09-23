@@ -33,14 +33,14 @@ import { Link as MUILink } from '@mui/material';
 export const InteractiveList = (props) => {
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
-
+    const navigate = useNavigate();
 
 
     const { categories, inventory, updateInventoryItem } = props;
 
-    const handleClick = (e) => {
-        alert("navigate to item")
-        // navigate('/');
+    const handleItemClick = (id) => {
+
+        navigate(`/items/${id}`);
     }
 
     const toggleFavorite = async (item) => {
@@ -89,13 +89,13 @@ export const InteractiveList = (props) => {
 
                                 <ListItem key={"header"} secondaryAction={
 
-                                    <Typography variant="h8">
+                                    <Typography variant="body1">
                                         Quick <br></br>Update
                                     </Typography>
 
                                 }>
 
-                                    <Typography sx={{ width: "12%" }} variant="body2">
+                                    <Typography sx={{ width: "12%" }} variant="body1">
                                         Favorite
                                     </Typography>
 
@@ -107,7 +107,7 @@ export const InteractiveList = (props) => {
                                         "Last Order: "
                                         : null} />
 
-                                    <ListItemText sx={{ width: "20%" }} primary="Inflation over month" secondary={secondary ?
+                                    <ListItemText sx={{ width: "20%" }} primary="Monthly Inflation" secondary={secondary ?
                                         "Annual inflation"
                                         : null} />
 
@@ -143,14 +143,14 @@ export const InteractiveList = (props) => {
                                                 </IconButton>
                                             </ListItemIcon>
 
-                                            <ListItemButton edge="end" sx={{ width: "30%" }}>
-                                                <MUILink href={`/items/${item._id}`}>
-                                                    <ListItemText sx={{ width: 200 }}
+                                            <ListItemButton sx={{ width: "30%" }} >
+                                                {/* <MUILink href={`/items/${item._id}`}> */}
+                                                    <ListItemText onClick={() => handleItemClick(item._id)} sx={{ width: 200 }}
                                                         primary={item.name}
                                                         secondary={secondary ? categoryName : null}
                                                     />
 
-                                                </MUILink>
+                                                {/* </MUILink> */}
                                             </ListItemButton >
                                             <ListItemText sx={{ width: "15%"}} primary={item.quantity} secondary={secondary ?
                                                 item.orderHistory ? "Not Available" :  item.orderHistory
