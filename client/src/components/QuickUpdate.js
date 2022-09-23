@@ -1,5 +1,5 @@
-import { Autocomplete, Button, Typography, TextField, InputLabel, Select, MenuItem, Paper, ListItemIcon, IconButton, Box } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { Button, Typography, TextField, InputLabel, Select, MenuItem, Paper, Box } from '@mui/material';
+import { useState } from 'react';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { updateOrderHistoryById } from "../services/inventoryService"
 const { updateItem, getItemById, deleteItem} = require('../services/localHostApiService')
@@ -9,8 +9,6 @@ const { updateItem, getItemById, deleteItem} = require('../services/localHostApi
 const QuickUpdate = (props) => {
     const [id, setId] = useState({});
     const [quantity, setQuantity] = useState('');
-    // const [category, setCategory] = useState('');
-    // const [orderHistory, setOrderHistory] = useState([]);
     const { inventory, updateInventoryItem , removeFromDom} = props
 
 
@@ -20,32 +18,24 @@ const QuickUpdate = (props) => {
         .catch((err) => console.error(err))
     }
 
-
-    const [newQuantity, setNewQuantity] = useState("");
-
-
     const handleUpdateOnSubmit = (e) => {
         e.preventDefault();
         console.log(id);
         getItemById(id)
             .then((data) => {
-                console.log(getTime());
-                console.log(data.orderHistory);
                 const newItem = {
                     name: data.name,
                     quantity: data.quantity += parseInt(quantity),
                     category: data.category,
                     isFavorited: data.isFavorited,
                 }
-                console.log(data.orderHistory);
-                console.log(newItem);
+
                 updateItem(id,newItem)
                     .then((item) => updateInventoryItem(item))
                     .catch((err) => console.log(err));
 
                 updateOrderHistoryById(id, getTime())
                     .then((item) => {
-                        console.log(item);
                         updateInventoryItem(item)
                     })
                     .catch((error) => console.log(error));
@@ -84,8 +74,7 @@ const QuickUpdate = (props) => {
                     </Select>
 
 
-                    {/* <TextField id= "outlined-basic" label="Name" variant="outlined" onChange = {(event) => {setName(event.target.value)}}/> */}
-                </div>
+                    </div>
                 <br />
                 <div>
                     <TextField id="outlined-basic" label="quantity added" fullWidth="true" size="small" variant="outlined" onChange={(event) => { setQuantity(event.target.value) }} />
@@ -94,9 +83,7 @@ const QuickUpdate = (props) => {
                 <Box sx={{display: "flex", justifyContent: "space-between", alignItems: "center"}}>
                 <Button variant='outlined' type='Submit'>Update Quantity</Button>
                 <Button variant='outlined' sx={{color:  "#F24F5B", borderColor: "#F24F5B"}}onClick={handleDeleteOnClick}><DeleteOutlineIcon/> Delete Item </Button>
-                {/* <ListItemIcon>
-                    <IconButton onClick={handleDeleteOnClick}><DeleteOutlineIcon></DeleteOutlineIcon></IconButton>
-                </ListItemIcon> */}
+
                 </Box>
             </form>
             </Paper>
