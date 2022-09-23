@@ -12,6 +12,7 @@ import {
   Navigate
 
 } from 'react-router-dom';
+import Footer from './components/Footer';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
           <Route path="/" element={<Main/>} />
           <Route path="items/:id" element={ <ViewOne/> }/>
         </Routes>
+        <Footer/>
         {/* <Link to={`/items/632a38d1ba5831a78f9c5e0e`}>Apples</Link>
         <Link to={`/items/632b519ac1556475c984ca2b`}>Gibson</Link> */}
         {/* <ViewOne itemData={itemData}/> */}
