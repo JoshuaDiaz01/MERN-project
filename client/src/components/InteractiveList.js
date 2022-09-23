@@ -1,4 +1,4 @@
-import { styled } from '@mui/material/styles';
+
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -13,39 +13,28 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
-import FolderIcon from '@mui/icons-material/Folder';
-import DeleteIcon from '@mui/icons-material/Delete';
 import Paper from '@mui/material/Paper';
-import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import LibraryAddOutlinedIcon from '@mui/icons-material/LibraryAddOutlined';
-import TrendingUpOutlinedIcon from '@mui/icons-material/TrendingUpOutlined';
-import TrendingFlatOutlinedIcon from '@mui/icons-material/TrendingFlatOutlined';
 import { ListItemButton } from '@mui/material';
-import { positions } from '@mui/system';
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined';
 import StarIcon from '@mui/icons-material/Star';
 import axios from 'axios';
-import { getItemById } from '../services/inventoryService';
-import { Link, useNavigate } from 'react-router-dom';
-import { Link as MUILink } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+
 
 
 export const InteractiveList = (props) => {
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
     const navigate = useNavigate();
-
-
     const { categories, inventory, updateInventoryItem } = props;
 
     const handleItemClick = (id) => {
-
         navigate(`/items/${id}`);
     }
 
     const toggleFavorite = async (item) => {
         const updatedItem = { ...item, isFavorited: !item.isFavorited }
-
         axios.put('http://localhost:8000/api/items/' + item._id, updatedItem)
             .then((res) => updateInventoryItem(res.data))
             .catch((error) => console.log(error))
@@ -66,7 +55,6 @@ export const InteractiveList = (props) => {
         <>
             <Paper elevation={8} sx={{ padding: 1 }}>
                 <Box sx={{ flexGrow: 1, maxWidth: "inherit", minWidth: "100%" }}>
-
                     <FormGroup row sx={{ marginLeft: 3 }}>
                         <FormControlLabel
                             control={
@@ -89,25 +77,16 @@ export const InteractiveList = (props) => {
                     </FormGroup>
 
                     <Grid>
-
                         <Grid item>
-
-
-
                             <List dense={dense} sx={{ maxWidth: "inherit" }} >
-
                                 <ListItem key={"header"} secondaryAction={
-
                                     <Typography variant="body1">
                                         Quick <br></br>Update
                                     </Typography>
-
                                 }>
-
                                     <Typography sx={{ width: "12%" }} variant="body1">
                                         Favorite
                                     </Typography>
-
 
                                     <ListItemText sx={{ width: "27%" }} primary="Item" secondary={secondary ?
                                         "Item category"
@@ -127,13 +106,10 @@ export const InteractiveList = (props) => {
                                         return (item.category === category.groupCode)
                                     }).map(entry => entry.name)
 
-
-
                                     const inflationString = categories.filter((category) => {
 
                                         return (item.category === category.groupCode)
                                     }).map(entry => {
-
                                         return entry.inflationIndexes
                                     })
 
@@ -153,18 +129,16 @@ export const InteractiveList = (props) => {
                                             </ListItemIcon>
 
                                             <ListItemButton sx={{ width: "30%" }} >
-                                                {/* <MUILink href={`/items/${item._id}`}> */}
                                                     <ListItemText onClick={() => handleItemClick(item._id)} sx={{ width: 200 }}
                                                         primary={item.name}
                                                         secondary={secondary ? categoryName : null}
                                                     />
-
-                                                {/* </MUILink> */}
                                             </ListItemButton >
+
                                             <ListItemText sx={{ width: "15%"}} primary={item.quantity} secondary={secondary ?
                                                 item.orderHistory.length === 0 ? "Not Available" :  formatMostRecentOrder(item.orderHistory[item.orderHistory.length - 1])
                                                 : null} />
-                                            {/* IF YOU DON'T HAVE INFLATION DATA FOR EVER CATEGORY, IT WILL CRASH. ONLY UNCOMMENT IF YOU DO. */}
+
                                             {inflationString.length > 0 ?
                                                 <ListItemText sx={{ width: "20%" }} primary={(((inflationString[0][0].value - inflationString[0][1].value) / inflationString[0][1].value) * 100).toFixed(2) + " %"}
                                                     secondary={secondary ?
@@ -173,12 +147,8 @@ export const InteractiveList = (props) => {
                                                         : <ListItemText sx={{textAlign: "flex-start"}}>No Data</ListItemText>
                                             }
                                         </ListItem>
-
                                     )
-
                                 })}
-
-
                             </List>
                         </Grid>
                     </Grid>
