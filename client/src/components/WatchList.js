@@ -14,19 +14,17 @@ const WatchList = (props) => {
         axios.put('http://localhost:8000/api/items/' + item._id, updatedItem)
             .then((res) => updateInventoryItem(res.data))
             .catch((error) => console.log(error))
-
     }
 
     const handleItemClick = (id) => {
-
         navigate(`/items/${id}`);
     }
 
     return (
         <>
-        <Paper elevation={8} sx={{padding:1, paddingRight: 3}}>
+            <Paper elevation={8} sx={{ padding: 1, paddingRight: 3 }}>
                 <Typography variant="h5" align="right">Watch List</Typography>
-                <Typography variant="h6" align="center" sx={{ marginRight: 5 }}>In Inventory</Typography>
+                {/* <Typography variant="h6" align="center" sx={{ marginRight: 5 }}>In Inventory</Typography> */}
 
                 <List>
                     {
@@ -36,31 +34,31 @@ const WatchList = (props) => {
                             const inflationString = categories.filter((category) => {
                                 return (entry.category === category.groupCode)
                             }).map(entry => entry.inflationIndexes)
-                            // const inflationArray = inflationString.toString().split(",")
+
 
                             return (
                                 <ListItem key={index} >
-                                    <ListItemIcon sx={{width: "10%"}} onClick={(e) => toggleFavorite(entry)}>
+                                    <ListItemIcon sx={{ width: "10%" }} onClick={(e) => toggleFavorite(entry)}>
                                         <IconButton><StarIcon fontSize={'medium'} color="primary" /></IconButton>
                                     </ListItemIcon>
                                     <ListItemButton>
 
-                                    <ListItemText key={index} onClick={() => handleItemClick(entry._id)}>{entry.name}</ListItemText>
+                                        <ListItemText key={index} onClick={() => handleItemClick(entry._id)}>{entry.name}</ListItemText>
                                     </ListItemButton>
 
-                                    <Box sx={{display: "flex", justifyContent: "flex-end"}}>
-                                        
-                                    <ListItemText primary={(((inflationString[0][0].value - inflationString[0][1].value) / inflationString[0][1].value) * 100).toFixed(2) + " %"} />
+                                    <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+
+                                        <ListItemText primary={(((inflationString[0][0].value - inflationString[0][1].value) / inflationString[0][1].value) * 100).toFixed(2) + " %"} />
 
                                     </Box>
 
                                 </ListItem>
-                )
+                            )
                         })
                     }
-            </List>
-            <Typography variant="h6" align="center" sx={{ marginRight: 5 }}>Not In Inventory</Typography>
-        </Paper>
+                </List>
+                {/* <Typography variant="h6" align="center" sx={{ marginRight: 5 }}>Not In Inventory</Typography> */}
+            </Paper>
         </>
     )
 }
