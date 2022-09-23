@@ -77,13 +77,8 @@ export const ViewOne = (props) => {
                     </Grid>
                     <Grid item xs={12} md={4} sx={{ pl: 5 }}>
 
-<<<<<<< Updated upstream
-                        <BarChart data={itemData} />
-
-=======
                         <BarChart data={itemData}/>
                         <WatchList inventory={allItems} categories={allCategories} updateInventoryItem={updateInventoryItem}/>
->>>>>>> Stashed changes
                     </Grid>
 
                 </Grid>

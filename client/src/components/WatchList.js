@@ -39,13 +39,8 @@ const WatchList = (props) => {
                                     </ListItemIcon>
                                     <ListItemText key={index} >{entry.name}</ListItemText>
 
-<<<<<<< Updated upstream
-                                    {/* IF YOU DON'T HAVE INFLATION DATA FOR EVER CATEGORY, IT WILL CRASH. ONLY UNCOMMENT IF YOU DO. */ }
-                            <ListItemText primary={(((inflationArray[0] - inflationArray[1]) / inflationArray[1]) * 100).toFixed(2) + " %"} />
-=======
                                     {/* IF YOU DON'T HAVE INFLATION DATA FOR EVER CATEGORY, IT WILL CRASH. ONLY UNCOMMENT IF YOU DO. */}
                                     <ListItemText primary={(((inflationString[0][0].value - inflationString[0][1].value) / inflationString[0][1].value) * 100).toFixed(2) + " %"} />
->>>>>>> Stashed changes
 
                                 </ListItem>
                 )

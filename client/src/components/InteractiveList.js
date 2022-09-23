@@ -144,7 +144,6 @@ export const InteractiveList = (props) => {
                                     const inflationArray = inflationString.toString().split(",")
 
 
->>>>>>> Stashed changes
                                     return (
 
                                         <ListItem key={i} secondaryAction={
