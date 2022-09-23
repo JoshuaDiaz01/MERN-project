@@ -49,7 +49,7 @@ export const LineGraph = (props) => {
     scales: {
       x: {
         ticks: {
-          color: "white"
+          color: "Primary.main"
         },
 
         grid: {
@@ -58,14 +58,14 @@ export const LineGraph = (props) => {
 
         title: {
           display: true,
-          text: 'Your Title',
+          text: '',
         },
-        color: "white"
+        color: "Primary.main"
       }, 
 
       y: {
         ticks: {
-          color: "white"
+          color: "Primary.main"
         },
         
         grid: {
@@ -83,7 +83,7 @@ export const LineGraph = (props) => {
         legend: {
           position: 'top',
           labels: {
-            color: "white"
+            color: "Primary.main"
           }
         },
         title: {

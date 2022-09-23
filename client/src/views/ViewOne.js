@@ -12,7 +12,7 @@ import QuickUpdate from "../components/QuickUpdate";
 import { getCategoryByGroupCode } from "../services/categoryService"
 import { getItemById } from "../services/localHostApiService"
 import axios from 'axios';
-
+import { Box } from "@mui/material";
 import Grid from '@mui/material/Grid'; // Grid version 1
 import WatchList from "../components/WatchList";
 
@@ -69,16 +69,18 @@ export const ViewOne = (props) => {
     if (isLoading) {
         return (
             <>
-                <Grid container spacing={10}>
+                <Grid container spacing={2}>
                     <Grid item xs={12} md={8}>
 
                         <LineGraph data={lineGraphData} />
 
                     </Grid>
-                    <Grid item xs={12} md={4} sx={{ pl: 5 }}>
+                    <Grid item xs={12} md={4}>
 
-                        <BarChart data={itemData}/>
-                        <WatchList inventory={allItems} categories={allCategories} updateInventoryItem={updateInventoryItem}/>
+                        <Box sx={{ marginBottom: 2 }}>
+                            <BarChart data={itemData} />
+                        </Box>
+                        <WatchList inventory={allItems} categories={allCategories} updateInventoryItem={updateInventoryItem} />
                     </Grid>
 
                 </Grid>
