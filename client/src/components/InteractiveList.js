@@ -52,6 +52,15 @@ export const InteractiveList = (props) => {
 
     }
 
+    const formatMostRecentOrder = (obj) => {
+        let key = Object.keys(obj);
+        let value = obj[key];
+        key = key[0].split(" ");
+        let newItem = key.slice(0, 4);
+        newItem = newItem.join(" ") + ": " + value;
+        return newItem;
+    }
+
     return (
 
         <>
@@ -153,9 +162,8 @@ export const InteractiveList = (props) => {
                                                 {/* </MUILink> */}
                                             </ListItemButton >
                                             <ListItemText sx={{ width: "15%"}} primary={item.quantity} secondary={secondary ?
-                                                item.orderHistory ? "Not Available" :  item.orderHistory
+                                                item.orderHistory.length === 0 ? "Not Available" :  formatMostRecentOrder(item.orderHistory[item.orderHistory.length - 1])
                                                 : null} />
-
                                             {/* IF YOU DON'T HAVE INFLATION DATA FOR EVER CATEGORY, IT WILL CRASH. ONLY UNCOMMENT IF YOU DO. */}
                                             {inflationString.length > 0 ?
                                                 <ListItemText sx={{ width: "20%" }} primary={(((inflationString[0][0].value - inflationString[0][1].value) / inflationString[0][1].value) * 100).toFixed(2) + " %"}
