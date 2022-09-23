@@ -1,12 +1,13 @@
 import StarIcon from '@mui/icons-material/Star';
 import Paper from '@mui/material/Paper';
-import { Box, IconButton, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
-import axios from 'axios'
+import { Box, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 
 const WatchList = (props) => {
     const { inventory, updateInventoryItem, categories } = props
-
+    const navigate = useNavigate();
     const toggleFavorite = async (item) => {
         const updatedItem = { ...item, isFavorited: !item.isFavorited }
 
@@ -14,6 +15,11 @@ const WatchList = (props) => {
             .then((res) => updateInventoryItem(res.data))
             .catch((error) => console.log(error))
 
+    }
+
+    const handleItemClick = (id) => {
+
+        navigate(`/items/${id}`);
     }
 
     return (
@@ -37,7 +43,10 @@ const WatchList = (props) => {
                                     <ListItemIcon sx={{width: "10%"}} onClick={(e) => toggleFavorite(entry)}>
                                         <IconButton><StarIcon fontSize={'medium'} color="primary" /></IconButton>
                                     </ListItemIcon>
-                                    <ListItemText key={index}>{entry.name}</ListItemText>
+                                    <ListItemButton>
+
+                                    <ListItemText key={index} onClick={() => handleItemClick(entry._id)}>{entry.name}</ListItemText>
+                                    </ListItemButton>
 
                                     <Box sx={{display: "flex", justifyContent: "flex-end"}}>
                                         
