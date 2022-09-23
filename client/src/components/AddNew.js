@@ -1,5 +1,7 @@
 import { Autocomplete, Button, Typography , TextField, Paper, Box} from '@mui/material';
 import {useState} from 'react';
+import { updateOrderHistoryById } from "../services/inventoryService"
+
 const { createItem } = require('../services/localHostApiService')
 
 const AddNew = (props) => {
@@ -133,16 +135,29 @@ const AddNew = (props) => {
             name,
             quantity,
             category,
-            orderHistory,
+            orderHistory: getTime(),
             inflationHistory,
             isFavorited
         }
+
+
         createItem(newItem)
         .then((item) => {
             addInventoryItem(item)
 
         })
         .catch((err) => console.log(err));
+    }
+
+    const getTime = () => {
+        let test = {"orderHistory": []}
+        let orderEntry = {};
+        let date = Date(Date.now());
+        let dateToString = date.toString();
+        orderEntry[dateToString] = parseInt(quantity);
+        // test.orderHistory.push(orderEntry); 
+
+        return orderEntry;
     }
 
     return (

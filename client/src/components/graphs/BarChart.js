@@ -36,7 +36,10 @@ export const BarChart = (props) => {
     try {
       for (let object in orderData) {
         if (accessor === "key") {
-          solution.push(Object.keys(orderData[object]))
+          console.log(Object.keys(orderData[object])[0].split(" ").slice(0, 4));
+          solution.push(Object.keys(orderData[object])[0].split(" ").slice(0, 4));
+
+          // solution.push(Object.keys(orderData[object]))
         }
 
         if (accessor === "value") {
@@ -46,7 +49,6 @@ export const BarChart = (props) => {
     } catch {
       return
     }
-
     return solution;
   }
 
