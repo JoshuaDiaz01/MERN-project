@@ -39,9 +39,9 @@ const NavBar = () => {
   };
 
   return (
-    <AppBar position="static">
-      <Container maxWidth="xl">
-        <Toolbar disableGutters>
+    <AppBar position="static" justify = "space-between">
+      <Container maxWidth="xl" justify = "space-between">
+        <Toolbar disableGutters justify = "space-between">
           <Image src= {inventori_logo} width= {100} height= {100} href="/"></Image>
           <Typography
             variant="h6"
