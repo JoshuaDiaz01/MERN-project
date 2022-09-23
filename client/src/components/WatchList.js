@@ -1,6 +1,6 @@
 import StarIcon from '@mui/icons-material/Star';
 import Paper from '@mui/material/Paper';
-import { IconButton, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import { Box, IconButton, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import axios from 'axios'
 
 
@@ -18,7 +18,7 @@ const WatchList = (props) => {
 
     return (
         <>
-            <Paper elevation={8} sx={{ padding: 1 }}>
+        <Paper elevation={8} sx={{padding:1, paddingRight: 3}}>
                 <Typography variant="h5" align="right">Watch List</Typography>
                 <Typography variant="h6" align="center" sx={{ marginRight: 5 }}>In Inventory</Typography>
 
@@ -33,14 +33,17 @@ const WatchList = (props) => {
                             // const inflationArray = inflationString.toString().split(",")
 
                             return (
-                                <ListItem key={index}>
-                                    <ListItemIcon onClick={(e) => toggleFavorite(entry)}>
+                                <ListItem key={index} >
+                                    <ListItemIcon sx={{width: "10%"}} onClick={(e) => toggleFavorite(entry)}>
                                         <IconButton><StarIcon fontSize={'medium'} color="primary" /></IconButton>
                                     </ListItemIcon>
-                                    <ListItemText key={index} >{entry.name}</ListItemText>
+                                    <ListItemText key={index}>{entry.name}</ListItemText>
 
-                                    {/* IF YOU DON'T HAVE INFLATION DATA FOR EVER CATEGORY, IT WILL CRASH. ONLY UNCOMMENT IF YOU DO. */}
+                                    <Box sx={{display: "flex", justifyContent: "flex-end"}}>
+                                        
                                     <ListItemText primary={(((inflationString[0][0].value - inflationString[0][1].value) / inflationString[0][1].value) * 100).toFixed(2) + " %"} />
+
+                                    </Box>
 
                                 </ListItem>
                 )
