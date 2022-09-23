@@ -1,41 +1,18 @@
-<<<<<<< Updated upstream
 import { Autocomplete, Button, Typography, TextField, InputLabel, Select, MenuItem, Paper, ListItemIcon, IconButton, Box } from '@mui/material';
 import { useEffect, useState } from 'react';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-const { updateItem, getItemById, deleteItem} = require('../services/localHostApiService')
-=======
-import { Autocomplete, Button, Typography, TextField, InputLabel, Select, MenuItem, Paper } from '@mui/material';
-import { useState } from 'react';
 import { updateOrderHistoryById } from "../services/inventoryService"
+const { updateItem, getItemById, deleteItem} = require('../services/localHostApiService')
 
-const { updateItem, getItemById } = require('../services/localHostApiService')
->>>>>>> Stashed changes
 
 
 const QuickUpdate = (props) => {
     const [id, setId] = useState({});
     const [quantity, setQuantity] = useState('');
-<<<<<<< Updated upstream
     const [category, setCategory] = useState('');
     const [orderHistory, setOrderHistory] = useState([]);
     const { inventory, updateInventoryItem , removeFromDom} = props
 
-
-
-    const handleUpdateOnSubmit = (e) => {
-        e.preventDefault();
-        const editedItem = getItemById(id);
-        const newItem = {
-            name: editedItem.name,
-            quantity: console.log(editedItem.quantity) ,
-            category: editedItem.category,
-            orderHistory: editedItem.orderHistory,
-        }
-        updateItem(id,newItem)
-
-            .then((item) => updateInventoryItem(item))
-            .catch((err) => console.log(err));
-    }
 
     const handleDeleteOnClick = (e) => {
         deleteItem(id)
@@ -44,11 +21,8 @@ const QuickUpdate = (props) => {
     }
 
 
-=======
     const [newQuantity, setNewQuantity] = useState("");
 
-
-    const { inventory, updateInventoryItem } = props
 
     const handleUpdateOnSubmit = (e) => {
         e.preventDefault();
@@ -81,7 +55,6 @@ const QuickUpdate = (props) => {
             })
             
         }
->>>>>>> Stashed changes
 
         const getTime = () => {
             let test = {"orderHistory": []}

@@ -30,7 +30,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { Link as MUILink } from '@mui/material';
 
 
-
 export const InteractiveList = (props) => {
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
@@ -118,7 +117,6 @@ export const InteractiveList = (props) => {
                                     const categoryName = categories.filter((category) => {
                                         return (item.category === category.groupCode)
                                     }).map(entry => entry.name)
-<<<<<<< Updated upstream
 
 
 
@@ -129,19 +127,6 @@ export const InteractiveList = (props) => {
 
                                         return entry.inflationIndexes
                                     })
-
-                                    const inflationArray = inflationString.toString().split(",")
-
-=======
-                                    
-                                    const inflationString = categories.filter((category) => {
-                                        return (item.category === category.groupCode)
-                                    }).map(entry => {
-                                        return entry.inflationIndexes
-                                    })
-
-
-                                    const inflationArray = inflationString.toString().split(",")
 
 
                                     return (
