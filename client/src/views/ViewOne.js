@@ -2,7 +2,7 @@ import "../ViewOneCss.css"
 
 
 import { React, useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 import { BarChart } from "../components/graphs/BarChart";
 import { LineGraph } from "../components/graphs/LineGraph"
@@ -10,7 +10,7 @@ import { DoughnutChart } from "../components/graphs/DoughnutChart"
 import QuickUpdate from "../components/QuickUpdate";
 
 import { getCategoryByGroupCode } from "../services/categoryService"
-import { getItemById } from "../services/localHostApiService"
+import { getItemById, deleteItem } from "../services/localHostApiService"
 import axios from 'axios';
 import { Box } from "@mui/material";
 import Grid from '@mui/material/Grid'; // Grid version 1
@@ -25,6 +25,7 @@ export const ViewOne = (props) => {
     const [itemData, setItemData] = useState([])
     const [allItems, setAllItems] = useState([])
     const [allCategories, setAllCategories] = useState([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/items')
@@ -66,6 +67,11 @@ export const ViewOne = (props) => {
             })
     }, [id])
 
+    const handleDeleteOnClick = (e) => {
+
+                navigate('/')
+            }
+
     if (isLoading) {
         return (
             <>
@@ -79,6 +85,10 @@ export const ViewOne = (props) => {
 
                         <Box sx={{ marginBottom: 2 }}>
                             <BarChart data={itemData} />
+                        </Box>
+
+                        <Box sx={{ marginBottom: 2 }}>
+                        <QuickUpdate inventory={allItems} updateInventoryItem={updateInventoryItem} removeFromDom= {handleDeleteOnClick}/>
                         </Box>
                         <WatchList inventory={allItems} categories={allCategories} updateInventoryItem={updateInventoryItem} />
                     </Grid>
