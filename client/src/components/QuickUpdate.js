@@ -9,8 +9,8 @@ const { updateItem, getItemById, deleteItem} = require('../services/localHostApi
 const QuickUpdate = (props) => {
     const [id, setId] = useState({});
     const [quantity, setQuantity] = useState('');
-    const [category, setCategory] = useState('');
-    const [orderHistory, setOrderHistory] = useState([]);
+    // const [category, setCategory] = useState('');
+    // const [orderHistory, setOrderHistory] = useState([]);
     const { inventory, updateInventoryItem , removeFromDom} = props
 
 
