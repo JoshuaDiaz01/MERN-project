@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const ItemSchema = new mongoose.Schema(
     {
         name: {
@@ -13,9 +14,9 @@ const ItemSchema = new mongoose.Schema(
         },
 
         category: {
-            type: String,
+            type: Number,
             required: [true, `{PATH} is required.`],
-         },
+        },
 
         isFavorited: {
             type: Boolean,
@@ -25,7 +26,13 @@ const ItemSchema = new mongoose.Schema(
         orderHistory: {
             type: Array,
             required: [true, `{PATH} is required`]
+        },
+
+        inflationHistory: {
+            type: Array,
+            required: [true, `{PATH} is required`]
         }
+
     },
     { timestamps: true } 
 )

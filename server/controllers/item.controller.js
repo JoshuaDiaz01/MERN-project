@@ -3,7 +3,9 @@ const {
     getAllItems,
     getItemById,
     updateItemById,
-    deleteItemById
+    deleteItemById,
+    updateOrderHistory,
+
 } = require("../services/item.service");
 
 const handleCreateItem = async (req, res) => {
@@ -53,10 +55,23 @@ const handleUpdateItemById = async (req, res) => {
     }
 }
 
+const handleUpdateOrderHistoryById = async (req, res) => {
+    try {
+        console.log("req.body", req.body);
+        const item = await updateOrderHistory(req.params.id, req.body);
+        console.log(req.body);
+        return res.json(item);
+    } catch (error) {
+        return res.status(400).json(error);
+    }
+    
+}
+
 module.exports = {
     handleCreateItem,
     handleGetAllItems,
     handleGetItemById,
     handleDeleteItemById,
-    handleUpdateItemById
+    handleUpdateItemById,
+    handleUpdateOrderHistoryById
 }

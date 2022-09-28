@@ -8,38 +8,47 @@ const createItem = async (data) => {
 }
 
 const getAllItems = async () => {
-    const items = await Item.find();
+    const allItems = await Item.find();
 
-    return items
+    return allItems
 }
 
 const getItemById = async (id) => {
-    const item = await Item.findById(id);
+    const oneItem = await Item.findById(id);
 
-    return item;
+    return oneItem;
 }
 
 const deleteItemById = async (id) => {
-    const item = await Item.findByIdAndDelete(id);
+    const deletedItem = await Item.findByIdAndDelete(id);
 
-    return item;
+    return deletedItem;
 }
 
 const updateItemById = async (id, data) => {
     console.log("service: updateItemById");
     console.log("updateAuthoerById data: " + JSON.stringify(data));
-    const item = await Item.findByIdAndUpdate(id, data, {
-        runValidators: true,
+    const updatedItem = await Item.findByIdAndUpdate(id, data, {
+        //displays updated data after original 
         new: true
     });
 
-    return item
+    return updatedItem
 }
+
+const updateOrderHistory = async (id, data) => {
+    console.log("do i ever get here", data.orderHistory[0]);
+    const updatedItem = await Item.updateOne({_id: id}, {$push: { orderHistory: data.orderHistory[0] }})
+
+    return updatedItem;
+}
+
 
 module.exports = {
     createItem,
     getAllItems,
     getItemById,
     deleteItemById,
-    updateItemById
+    updateItemById,
+    updateOrderHistory
 };
