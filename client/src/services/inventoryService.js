@@ -4,7 +4,7 @@ const http = axios.create({
     baseURL: 'http://localhost:8000/api'
 })
 
-const DB_NAME = "inventory_db"
+const DB_NAME = "item"
 
 export const createItem= async (data) => {
     const res = await http.post(`/${DB_NAME}s`, data);

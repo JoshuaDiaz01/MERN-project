@@ -18,8 +18,8 @@ import LibraryAddOutlinedIcon from '@mui/icons-material/LibraryAddOutlined';
 import { ListItemButton } from '@mui/material';
 import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined';
 import StarIcon from '@mui/icons-material/Star';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { updateItemById } from '../services/inventoryService';
 
 
 
@@ -35,8 +35,8 @@ export const InteractiveList = (props) => {
 
     const toggleFavorite = async (item) => {
         const updatedItem = { ...item, isFavorited: !item.isFavorited }
-        axios.put('http://localhost:8000/api/items/' + item._id, updatedItem)
-            .then((res) => updateInventoryItem(res.data))
+        await updateItemById (item._id, updatedItem)
+            .then((res) => updateInventoryItem(res))
             .catch((error) => console.log(error))
 
     }
