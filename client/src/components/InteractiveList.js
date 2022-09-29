@@ -20,6 +20,7 @@ import StarOutlineOutlinedIcon from '@mui/icons-material/StarOutlineOutlined';
 import StarIcon from '@mui/icons-material/Star';
 import { useNavigate } from 'react-router-dom';
 import { updateItemById } from '../services/inventoryService';
+import {InflationDisplay} from '../components/InflationDisplay';
 
 
 
@@ -54,6 +55,8 @@ export const InteractiveList = (props) => {
 
         <>
             <Paper elevation={8} sx={{ padding: 1 }}>
+
+                {/* Check boxes for Dense Mode and Show Details */}
                 <Box sx={{ flexGrow: 1, maxWidth: "inherit", minWidth: "100%" }}>
                     <FormGroup row sx={{ marginLeft: 3 }}>
                         <FormControlLabel
@@ -79,6 +82,8 @@ export const InteractiveList = (props) => {
                     <Grid>
                         <Grid item>
                             <List dense={dense} sx={{ maxWidth: "inherit" }} >
+
+                                {/* Headings for each column */}
                                 <ListItem key={"header"} secondaryAction={
                                     <Typography variant="body1">
                                         Quick <br></br>Update
@@ -106,14 +111,6 @@ export const InteractiveList = (props) => {
                                         return (item.category === category.groupCode)
                                     }).map(entry => entry.name)
 
-                                    const inflationString = categories.filter((category) => {
-
-                                        return (item.category === category.groupCode)
-                                    }).map(entry => {
-                                        return entry.inflationIndexes
-                                    })
-
-
                                     return (
 
                                         <ListItem key={i} secondaryAction={
@@ -128,24 +125,19 @@ export const InteractiveList = (props) => {
                                                 </IconButton>
                                             </ListItemIcon>
 
-                                            <ListItemButton sx={{ width: "30%" }} >
+                                            <ListItemButton sx={{ width: "20%" }} >
                                                     <ListItemText onClick={() => handleItemClick(item._id)} sx={{ width: 200 }}
                                                         primary={item.name}
                                                         secondary={secondary ? categoryName : null}
                                                     />
                                             </ListItemButton >
 
-                                            <ListItemText sx={{ width: "15%"}} primary={item.quantity} secondary={secondary ?
+                                            <ListItemText sx={{ width: "8%"}} primary={item.quantity} secondary={secondary ?
                                                 item.orderHistory.length === 0 ? "Not Available" :  formatMostRecentOrder(item.orderHistory[item.orderHistory.length - 1])
                                                 : null} />
 
-                                            {inflationString.length > 0 ?
-                                                <ListItemText sx={{ width: "20%" }} primary={(((inflationString[0][0].value - inflationString[0][1].value) / inflationString[0][1].value) * 100).toFixed(2) + " %"}
-                                                    secondary={secondary ?
-                                                        "Annual  " + (((inflationString[0][0].value - inflationString[0][11].value) / inflationString[0][11].value) * 100).toFixed(1) + " %"
-                                                        : null} />
-                                                        : <ListItemText sx={{textAlign: "flex-start"}}>No Data</ListItemText>
-                                            }
+                                            <InflationDisplay sx={{ width: "10%" }} categories={categories} groupCode={item.category} secondary={secondary}/>
+                                        
                                         </ListItem>
                                     )
                                 })}
