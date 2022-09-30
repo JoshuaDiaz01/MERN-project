@@ -28,7 +28,7 @@ export const InteractiveList = (props) => {
     const [dense, setDense] = React.useState(false);
     const [secondary, setSecondary] = React.useState(false);
     const navigate = useNavigate();
-    const { categories, inventory, updateInventoryItem } = props;
+    const { categories, inventory, updateInventoryItem, handleSetItemSelected } = props;
 
     const handleItemClick = (id) => {
         navigate(`/items/${id}`);
@@ -114,7 +114,7 @@ export const InteractiveList = (props) => {
                                     return (
 
                                         <ListItem key={i} secondaryAction={
-                                            <IconButton position="left" onClick={(e) => alert(item.name)}>
+                                            <IconButton position="left" onClick={(e) => handleSetItemSelected(item)}>
                                                 <LibraryAddOutlinedIcon fontSize={dense ? 'small' : 'medium'} color="primary" />
                                             </IconButton>
                                         }>

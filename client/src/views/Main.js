@@ -15,9 +15,8 @@ import { useNavigate } from 'react-router-dom';
 export const Main = (props) => {
     const [inventory, setInventory] = useState([])
     const [categories, setCategories] = useState([])
+    const [itemSelected, setItemSelected] = useState(false)
     const [isUpdated, setIsUpdated] = useState(false)
-
-    // const navigate = useNavigate();
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/items')
@@ -30,12 +29,9 @@ export const Main = (props) => {
             .then(res => { setCategories(res.data) })
     }, [])
 
-    // update the dom while setting the state
 
-    // const updateFavorite = id => {
-    //     const originalItem = 
-    // }
     const updateInventoryItem = (updatedItem) => {
+        console.log("Main.js updateInventoryItem")
         const updatedInventory = inventory.map((item) => {
             if (item._id === updatedItem._id) {
                 return updatedItem
@@ -51,18 +47,21 @@ export const Main = (props) => {
     }
 
     const addInventoryItem = (newItem) => {
-        console.log("main add inventory")
         const updatedInventory = [newItem, ...inventory]
         setInventory(updatedInventory);
     }
+
+    const handleSetItemSelected = (item) => {
+        setItemSelected(item)
+    }
+
     return (
         <>
             <div>
 
                 <Grid container spacing={2}>
                     <Grid item xs={12} md={8}>
-                        {inventory.length > 0 && categories.length > 0 && <InteractiveList inventory={inventory} categories={categories} updateInventoryItem={updateInventoryItem}
-                        />}
+                        {inventory.length > 0 && categories.length > 0 && <InteractiveList inventory={inventory} categories={categories} updateInventoryItem={updateInventoryItem} handleSetItemSelected={handleSetItemSelected}/>}
 
 
 
@@ -74,7 +73,7 @@ export const Main = (props) => {
                         <Box sx={{ marginBottom: 2 }}>
                             <AddNew categories={categories} addInventoryItem={addInventoryItem}/>
                         </Box>
-                        <QuickUpdate inventory={inventory} updateInventoryItem={updateInventoryItem} removeFromDom= {removeFromDom}/>
+                        <QuickUpdate inventory={inventory} updateInventoryItem={updateInventoryItem} removeFromDom= {removeFromDom} itemSelected={itemSelected} handleSetItemSelected={handleSetItemSelected}/>
                     </Grid>
 
                 </Grid>
