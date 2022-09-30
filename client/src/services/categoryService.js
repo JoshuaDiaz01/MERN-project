@@ -14,7 +14,6 @@ export const getAllCategories = async () => {
 export const getCategoryByGroupCode  = async (groupCode) => {
     // const res = await http.get("categories", groupCode);
     const res = await axios.get(`http://localhost:8000/api/categories/${groupCode}`)
-    console.log(res.data);
     return res.data;
 }
 

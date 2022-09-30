@@ -32,9 +32,7 @@ export const deleteItemById  = async (id) => {
 }
 
 export const updateOrderHistoryById = async (id, data) => {
-    console.log(data);
     const res = await http.put(`/items/orderHistory/${id}`, data);
-    console.log(res.data);
     return res.data;
 }
 
