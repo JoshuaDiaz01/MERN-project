@@ -1,5 +1,5 @@
 To install MUI dependencies, cd into client directory
-in the terminal type:  npm install @mui/material @emotion/react @emotion/styled @mui/icons-material
+in the terminal type:  npm install @mui/material @emotion/react @emotion/styled @mui/icons-material mui-image
 
 Install roboto font: npm install @fontsource/lato
 import it into entry-point:

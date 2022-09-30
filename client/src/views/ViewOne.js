@@ -6,7 +6,6 @@ import { useParams, useNavigate } from "react-router-dom";
 
 import { BarChart } from "../components/graphs/BarChart";
 import { LineGraph } from "../components/graphs/LineGraph"
-import { DoughnutChart } from "../components/graphs/DoughnutChart"
 import QuickUpdate from "../components/QuickUpdate";
 
 import { getCategoryByGroupCode } from "../services/categoryService"
