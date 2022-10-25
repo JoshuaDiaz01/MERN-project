@@ -35,11 +35,16 @@ function App() {
 
   let Joshua = require("./components/images/IMG_0118.jpg")
   let Adrian = require("./components/images/adrian.jpeg")
+  let stickFigure = require("./components/images/stick_figure_2.png")
 
   const AboutUs = (props) => {
     return (
       <div class="container">
-        <h1 style={{ color: "#b2abf2", textAlign: "center", fontFamily: "sans-serif", fontSize: "300%" }}>About The Developers</h1>
+        <h1 style={{ color: "#b2abf2", textAlign: "center", fontFamily: "sans-serif", fontSize: "600%" }}>About The Developers of 
+        <div>
+        <img src = {stickFigure} alt = "stick" style = {{height:"65px", borderRadius:"100%", marginLeft:"20px", marginTop:"px"}}></img>nventory:
+        </div>
+        </h1>
         <div style={{ color: "#b2abf2", textAlign: "center", margin: "20px" }}>
           <div>
             <h1 style={{ margin: "20px", fontSize: "250%" }}>Full Stack Developer: Adrian Dowst</h1>
@@ -55,7 +60,7 @@ function App() {
             <h1 style={{ margin: "20px", fontSize: "250%" }}>SCRUM Leader, Full Stack Developer: Joshua Diaz</h1>
             <div style={{ display: "flex" }}>
               <img src={Joshua} alt="joshua" style={{ borderRadius: "100%", height: "337.5px", width: "350.5px" }}></img>
-              <h1 style={{ marginTop: "90px", marginLeft: "100px" }}>Joshua Diaz is a motivated Full Stacl Developer with a passion in all things Science and Technology! His favorite languages are Java and JavaScript!
+              <h1 style={{ marginTop: "90px", marginLeft: "100px" }}>Joshua Diaz is a motivated Developer with a passion in all things Science and Technology! His favorite languages are Java and JavaScript!
                 <a style={{ marginLeft: "20px", color: "#b2abf2" }} href="https://github.com/JoshuaDiaz01">GitHub</a> <a style={{ marginLeft: "20px", color: "#b2abf2" }} href="https://www.linkedin.com/in/joshuadiaz93117/">LinkedIn</a> </h1>
             </div>
           </div>
