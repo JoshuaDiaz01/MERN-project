@@ -1,4 +1,4 @@
-
+import Container from '@mui/material/Container';
 import './App.css';
 import { Main } from '../src/views/Main'
 import { ViewOne } from './views/ViewOne'
@@ -33,19 +33,25 @@ function App() {
     }
   })
 
+  let Joshua = require("./components/images/IMG_0118.jpg")
+
   const AboutUs = (props) => {
     return (
       <div class="container">
-        <h1 style={{ color: "#b2abf2", textAlign: "center", fontFamily: "sans-serif", fontSize: "250%" }}>About The Developers</h1>
+        <h1 style={{ color: "#b2abf2", textAlign: "center", fontFamily: "sans-serif", fontSize: "300%" }}>About The Developers</h1>
         <div style={{ color: "#b2abf2", textAlign: "center", margin: "20px" }}>
           <div>
             <h1 style={{ margin: "20px" }}>Adrian Dowst</h1>
-            <div style={{display: "flex", textAlign: "center"}}>
-              <h2>hey</h2>
-            </div>
           </div>
           <div>
             <h1 style={{ margin: "20px" }}>Joshua Diaz</h1>
+            <div style={{display: "flex"}}>
+              <img src={Joshua} alt ="joshua" style = {{borderRadius:"100%", height: "300px", width: "337.5px"}}></img>
+              <h1 style = {{marginTop: "90px", marginLeft: "100px"}}>Joshua Diaz is a motivated developer with a passion in all things Science and Technology! His favorite languages are Java and JavaScript!
+              
+              <a style = {{marginLeft: "20px", color: "#b2abf2"}}href="https://github.com/JoshuaDiaz01">GitHub</a> <a style = {{marginLeft: "20px", color: "#b2abf2"}}href="https://www.linkedin.com/in/joshuadiaz93117/">LinkedIn</a> </h1>
+              
+            </div>
           </div>
           <div>
             <h1 style={{ margin: "20px" }}>Angel Ruvalcaba</h1>
