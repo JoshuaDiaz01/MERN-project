@@ -36,14 +36,12 @@ function App() {
   let Joshua = require("./components/images/IMG_0118.jpg")
   let Adrian = require("./components/images/adrian.jpeg")
   let stickFigure = require("./components/images/stick_figure_2.png")
+  let Eye = require("./components/images/eye_2.png")
 
   const AboutUs = (props) => {
     return (
       <div class="container">
-        <h1 style={{ color: "#b2abf2", textAlign: "center", fontFamily: "sans-serif", fontSize: "600%" }}>About The Developers of 
-        <div>
-        <img src = {stickFigure} alt = "stick" style = {{height:"65px", borderRadius:"100%", marginLeft:"20px", marginTop:"px"}}></img>nventory:
-        </div>
+        <h1 style={{ color: "#b2abf2", textAlign: "center", fontFamily: "sans-serif", fontSize: "500%" }}>About The Developers of Inventori
         </h1>
         <div style={{ color: "#b2abf2", textAlign: "center", margin: "20px" }}>
           <div>
