@@ -34,6 +34,7 @@ function App() {
   })
 
   let Joshua = require("./components/images/IMG_0118.jpg")
+  let Adrian = require("./components/images/adrian.jpeg")
 
   const AboutUs = (props) => {
     return (
@@ -41,23 +42,28 @@ function App() {
         <h1 style={{ color: "#b2abf2", textAlign: "center", fontFamily: "sans-serif", fontSize: "300%" }}>About The Developers</h1>
         <div style={{ color: "#b2abf2", textAlign: "center", margin: "20px" }}>
           <div>
-            <h1 style={{ margin: "20px" }}>Adrian Dowst</h1>
-          </div>
-          <div>
-            <h1 style={{ margin: "20px" }}>Joshua Diaz</h1>
-            <div style={{display: "flex"}}>
-              <img src={Joshua} alt ="joshua" style = {{borderRadius:"100%", height: "300px", width: "337.5px"}}></img>
-              <h1 style = {{marginTop: "90px", marginLeft: "100px"}}>Joshua Diaz is a motivated developer with a passion in all things Science and Technology! His favorite languages are Java and JavaScript!
-              
-              <a style = {{marginLeft: "20px", color: "#b2abf2"}}href="https://github.com/JoshuaDiaz01">GitHub</a> <a style = {{marginLeft: "20px", color: "#b2abf2"}}href="https://www.linkedin.com/in/joshuadiaz93117/">LinkedIn</a> </h1>
-              
+            <h1 style={{ margin: "20px", fontSize: "250%" }}>Full Stack Developer: Adrian Dowst</h1>
+            <div style={{ display: "flex" }}>
+              <img src={Adrian} alt="Adrian" style={{ borderRadius: "100%", height: "300px", width: "337.5px" }}></img>
+              <h1 style={{ marginTop: "90px", marginLeft: "100px" }}>Adrian Dowst is a former Chemistry educator turned Full Stack Developer. I love working on projects that package useful, interactive features with great design!
+
+                <a style={{ marginLeft: "20px", color: "#b2abf2" }} href="https://github.com/aadowst">GitHub</a> <a style={{ marginLeft: "20px", color: "#b2abf2" }} href="https://www.linkedin.com/in/adrian-dowst/">LinkedIn</a> </h1>
+
             </div>
           </div>
           <div>
-            <h1 style={{ margin: "20px" }}>Angel Ruvalcaba</h1>
+            <h1 style={{ margin: "20px", fontSize: "250%" }}>SCRUM Leader, Full Stack Developer: Joshua Diaz</h1>
+            <div style={{ display: "flex" }}>
+              <img src={Joshua} alt="joshua" style={{ borderRadius: "100%", height: "337.5px", width: "350.5px" }}></img>
+              <h1 style={{ marginTop: "90px", marginLeft: "100px" }}>Joshua Diaz is a motivated Full Stacl Developer with a passion in all things Science and Technology! His favorite languages are Java and JavaScript!
+                <a style={{ marginLeft: "20px", color: "#b2abf2" }} href="https://github.com/JoshuaDiaz01">GitHub</a> <a style={{ marginLeft: "20px", color: "#b2abf2" }} href="https://www.linkedin.com/in/joshuadiaz93117/">LinkedIn</a> </h1>
+            </div>
           </div>
           <div>
-            <h1 style={{ margin: "20px" }}>Patrick Huynh</h1>
+            <h1 style={{ margin: "20px", fontSize: "250%" }}>Full Stack Developer: Angel Ruvalcaba</h1>
+          </div>
+          <div>
+            <h1 style={{ margin: "20px", fontSize: "250%" }}>Full Stack Developer: Patrick Huynh</h1>
           </div>
         </div>
       </div>
