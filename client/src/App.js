@@ -33,7 +33,31 @@ function App() {
     }
   })
 
+  const AboutUs = (props) => {
+    return (
+      <div class="container">
+        <h1 style={{ color: "#b2abf2", textAlign: "center", fontFamily: "sans-serif", fontSize: "250%" }}>About The Developers</h1>
+        <div style={{ color: "#b2abf2", textAlign: "center", margin: "20px" }}>
+          <div>
+            <h1 style={{ margin: "20px" }}>Adrian Dowst</h1>
+            <div style={{display: "flex", textAlign: "center"}}>
+              <h2>hey</h2>
+            </div>
+          </div>
+          <div>
+            <h1 style={{ margin: "20px" }}>Joshua Diaz</h1>
+          </div>
+          <div>
+            <h1 style={{ margin: "20px" }}>Angel Ruvalcaba</h1>
+          </div>
+          <div>
+            <h1 style={{ margin: "20px" }}>Patrick Huynh</h1>
+          </div>
+        </div>
+      </div>
 
+    );
+  }
 
 
   return (
@@ -46,6 +70,7 @@ function App() {
         <NavBar></NavBar>
         <Box sx={{ padding: 3 }}>
           <Routes>
+            <Route path="/aboutUs" element={<AboutUs />} />
             <Route path="/" element={<Main />} />
             <Route path="items/:id" element={<ViewOne />} />
           </Routes>

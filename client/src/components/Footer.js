@@ -26,7 +26,7 @@ const Footer = (props) => {
             </Grid>
             <Grid xs= {4}>
                 <Link href='/' style={{color: "#b2abf2"}}>Contact | </Link> 
-                <Link href='/' style={{color: "#b2abf2"}}>About Us | </Link> 
+                <Link href='/aboutUs' style={{color: "#b2abf2"}}>About Us | </Link> 
                 <Link href='/' style={{color: "#b2abf2", marginRight: "150px"}}>Support</Link>
             </Grid>
             </Grid>
