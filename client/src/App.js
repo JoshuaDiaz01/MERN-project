@@ -36,7 +36,7 @@ function App() {
   let Joshua = require("./components/images/IMG_0118_2.jpg")
   let Adrian = require("./components/images/adrian.jpeg")
   let Angel_2 = require("./components/images/Angel_2.jpeg")
-
+  let Kevin = require("./components/images/Kevin.jpg")
   const AboutUs = (props) => {
     return (
       <div class="container">
@@ -71,6 +71,11 @@ function App() {
           </div>
           <div>
             <h1 style={{ margin: "20px", fontSize: "250%" }}>Full Stack Developer: Patrick Huynh</h1>
+            <div style={{ display: "flex" }}>
+              <img src={Kevin} alt="kevin" style={{ borderRadius: "100%", height: "330.5px", width: "330.5px" }}></img>
+              <h1 style={{ marginTop: "90px", marginLeft: "100px" }}>Lack of passion in biomedical research drove Kevin Hyunh to step out of his comfort zone and make the switch to an exciting career in development! He enjoys tackling problems pertaining to data managment and user experience!
+                <a style={{ marginLeft: "20px", color: "#b2abf2" }} href="https://github.com/kvhuynh">GitHub</a> <a style={{ marginLeft: "20px", color: "#b2abf2" }} href="https://www.linkedin.com/in/kvhuynh/">LinkedIn</a> </h1>
+            </div>
           </div>
         </div>
       </div>
