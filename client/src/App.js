@@ -33,10 +33,9 @@ function App() {
     }
   })
 
-  let Joshua = require("./components/images/IMG_0118.jpg")
+  let Joshua = require("./components/images/IMG_0118_2.jpg")
   let Adrian = require("./components/images/adrian.jpeg")
-  let stickFigure = require("./components/images/stick_figure_2.png")
-  let Eye = require("./components/images/eye_2.png")
+  let Angel_2 = require("./components/images/Angel_2.jpeg")
 
   const AboutUs = (props) => {
     return (
@@ -64,6 +63,11 @@ function App() {
           </div>
           <div>
             <h1 style={{ margin: "20px", fontSize: "250%" }}>Full Stack Developer: Angel Ruvalcaba</h1>
+            <div style={{ display: "flex" }}>
+              <img src={Angel_2} alt="angel" style={{ borderRadius: "100%", height: "330.5px", width: "330.5px" }}></img>
+              <h1 style={{ marginTop: "90px", marginLeft: "100px" }}>Angel Ruvalcaba is a passionate develloper with interests in BlockChain Development and financial technology. He is Full Stack in JAVA/MERN/Python.
+                <a style={{ marginLeft: "20px", color: "#b2abf2" }} href="https://github.com/a-ruv">GitHub</a> <a style={{ marginLeft: "20px", color: "#b2abf2" }} href="https://www.linkedin.com/in/angel-ruvalcaba-44556b251/">LinkedIn</a> </h1>
+            </div>
           </div>
           <div>
             <h1 style={{ margin: "20px", fontSize: "250%" }}>Full Stack Developer: Patrick Huynh</h1>
