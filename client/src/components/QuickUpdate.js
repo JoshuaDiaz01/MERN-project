@@ -27,6 +27,7 @@ const QuickUpdate = (props) => {
                     name: data.name,
                     quantity: data.quantity += parseInt(quantity),
                     category: data.category,
+                    orderHistory: data.orderHistory,  // for editing data in postman
                     isFavorited: data.isFavorited,
                 }
 

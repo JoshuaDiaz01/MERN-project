@@ -70,7 +70,7 @@ function App() {
             </div>
           </div>
           <div>
-            <h1 style={{ margin: "20px", fontSize: "250%" }}>Full Stack Developer: Patrick Huynh</h1>
+            <h1 style={{ margin: "20px", fontSize: "250%" }}>Full Stack Developer: Kevin Huynh</h1>
             <div style={{ display: "flex" }}>
               <img src={Kevin} alt="kevin" style={{ borderRadius: "100%", height: "330.5px", width: "330.5px" }}></img>
               <h1 style={{ marginTop: "90px", marginLeft: "100px" }}>Lack of passion in biomedical research drove Kevin Hyunh to step out of his comfort zone and make the switch to an exciting career in development! He enjoys tackling problems pertaining to data managment and user experience!
